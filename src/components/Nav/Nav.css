@@ -13,12 +13,13 @@
     color: var(--color-medium-dark);
     text-decoration: none;
     transition: 0.25s;
+    cursor: default !important;
 }
 .navBar a:visited {
     color: var(--color-medium-dark)
 }
 .navBar a:hover {
-    color: var(--color-light)
+    color: var(--color-light);
 }
 
 .active {

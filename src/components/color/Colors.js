@@ -4,6 +4,7 @@ import ColorDisplay from './ColorDisplay'
 import "./colors.css"
 import tinycolor from 'tinycolor2'
 import materialpalette from 'material-palette'
+import SaveColorButton from './SaveColorButton'
 
 
 class Colors extends Component {
@@ -50,6 +51,15 @@ class Colors extends Component {
         this.setState(newState)
     }
 
+    saveColors = () => {
+        const colorsForKit = {}
+        colorsForKit.color1 = this.state.colors[0]
+        colorsForKit.color2 = this.state.colors[1]
+        colorsForKit.color3 = this.state.colors[2]
+        colorsForKit.color4 = this.state.colors[3]
+        this.props.saveToLocalStorage(colorsForKit, "colors")
+    }
+
     componentDidMount() {
         if (this.props.pathname !== "/") {this.props.setPathname("/")}
     }
@@ -65,6 +75,7 @@ class Colors extends Component {
                         disableAlpha={true}
                         onChange={this.setSourceHex}
                     />
+                <SaveColorButton saveColors={this.saveColors}/>
                 </section>
             </div>
         )

@@ -26,7 +26,7 @@ class Styleasy extends Component {
     }
     render() {
         return <div className="masterContainer">
-            <Logo pathname={this.state.pathname} isAuthenticated={this.isAuthenticated}/>
+            <Logo setAuth={this.setAuth} pathname={this.state.pathname} isAuthenticated={this.isAuthenticated}/>
             <IsAuth pathname={this.state.pathname} isAuthenticated={this.isAuthenticated} setAuth={this.setAuth} setPathname={this.setPathname}/>
             <Footer/>
         </div>

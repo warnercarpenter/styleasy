@@ -1,17 +1,23 @@
+.fontMaster {
+    display: flex;
+    flex-direction: column;
+    height: 322px;
+}
+
 .fontBox {
-    height: 230px;
+    min-height: 230px;
     width: 485px;
     padding: 15px;
     margin: auto;
-    margin-bottom: 60px;
     display: flex;
     justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
     text-align: center;
     border: solid 1px var(--color-medium-dark);
     border-radius: 24px;
     background-color: rgba(255, 255, 255, .05);
 }
+
 
 .buttonBox {
     margin: auto;
@@ -121,6 +127,7 @@
     overflow: auto;
     margin-bottom: 10px;
     margin-top: 1px;
+    margin-right: 8px;
     text-align: left;
     border: solid 1px var(--color-medium-dark);
     border-top-left-radius: 10px;
@@ -176,7 +183,36 @@
     transform: translateY(-1px)
 }
 
+.fontSearch::placeholder {
+    color: var(--color-medium-dark)
+}
+
 .fontSearch:focus {
     border-color: var(--color-light);
     width: 170px;
+}
+
+.saveFontButton {
+    font-size: 12px;
+    padding: 10px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    width: 130px;
+    height: 30px;
+    line-height: 0px;
+    background: none;
+    border: solid 1px var(--color-medium-light);
+    border-radius: 18px;
+    color: var(--color-medium-light);
+    transition: 0.25s;
+    margin: auto;
+    margin-top: 80px;
+    transform: translateY(-59px);
+    height: 30px
+}
+
+.saveFontButton:hover {
+    border: solid 1px var(--color-light);
+    color: var(--color-light);
+    width: 140px
 }

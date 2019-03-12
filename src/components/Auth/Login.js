@@ -29,6 +29,7 @@ export default class Login extends Component {
                 } else {
                     UserManager.addUser(newUser).then(user => {
                         sessionStorage.setItem("credentials", parseInt(user.id))
+                        sessionStorage.setItem("username", user.username)
                         this.props.setAuth()
                     })
                 }
@@ -47,6 +48,7 @@ export default class Login extends Component {
                         alert("Wrong username or password")
                     } else {
                         sessionStorage.setItem("credentials", parseInt(user[0].id))
+                        sessionStorage.setItem("username", user[0].username)
                         this.props.setAuth()
                     }
                 }

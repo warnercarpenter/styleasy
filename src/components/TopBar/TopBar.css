@@ -1,0 +1,29 @@
+.topBar {
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.logoutSection {
+    text-align: right;
+    transform: translate(-60px, 4vh);
+}
+
+.logoutButton {
+    font-size: 12px;
+    background: none;
+    border: none;
+    border-radius: 18px;
+    color: var(--color-medium-light);
+    margin: auto;
+    transition: 0.25s;
+}
+
+.logoutButton:hover {
+    color: var(--color-light);
+}
+
+.previewModeButton {
+    transform: translate(60px, 4vh);
+}
