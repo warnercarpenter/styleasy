@@ -4,7 +4,7 @@
   --color-medium-light: #ababab;
   --color-light: #ffffff;
   --main-font: Helvetica, sans-serif;
-  --secondary-font: Poppins, sans-serif;
+  --secondary-font: sans-serif
 }
 
 html {
@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  font-family: var(--main-font);
+  font-family: var(--secondary-font);
   margin: 0;
   overflow: auto;
   height: 100vh;
@@ -37,4 +37,8 @@ textarea, select, input, button {
 .pageTitle {
   text-align: center;
   color: var(--color-medium-light)
+}
+
+button {
+  font-family: var(--secondary-font);
 }

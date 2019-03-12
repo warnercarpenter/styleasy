@@ -15,15 +15,6 @@ class FontSelect extends Component {
     render() {
         return (
             <div className="fontDisplay">
-                <FontPicker
-                mainOrSecondary={this.props.mainOrSecondary}
-                variation={this.props.variation}
-                searchTerms={this.props.searchTerms}
-                main_font={this.props.main_font}
-                setMainFont={this.props.setMainFont}
-                secondary_font={this.props.secondary_font}
-                setSecondaryFont={this.props.setSecondaryFont}
-                />
                 <div className="fontPreviewAndOptions">
                 <FontPreview main_font={this.props.main_font} secondary_font={this.props.secondary_font} />
                     <div className="buttonBox">
@@ -33,6 +24,15 @@ class FontSelect extends Component {
                         <input type="text" spellCheck="false" autoComplete="off" className="fontSearch" onChange={this.handleFieldChange} placeholder="Search"></input>
                     </div>
                 </div>
+                <FontPicker
+                mainOrSecondary={this.props.mainOrSecondary}
+                variation={this.props.variation}
+                searchTerms={this.props.searchTerms}
+                main_font={this.props.main_font}
+                setMainFont={this.props.setMainFont}
+                secondary_font={this.props.secondary_font}
+                setSecondaryFont={this.props.setSecondaryFont}
+                />
             </div>
         )
     }

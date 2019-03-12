@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import InfiniteScroll from 'react-infinite-scroller';
 import fontCategories from './fontCategories'
+import SystemFonts from './SystemFonts'
 
 class FontPicker extends Component {
 
@@ -15,6 +16,7 @@ class FontPicker extends Component {
                 const newState = {
                     fontFamilies: []
                 }
+                newState.fontFamilies = SystemFonts
                 e.items.forEach(currentFont => {
                     const family = currentFont.family
                     newState.fontFamilies.push(family)
@@ -38,19 +40,37 @@ class FontPicker extends Component {
                     loader={<div className="loader" key={0}>Loading fonts ...</div>}
                     useWindow={false}
                 >
-                    {this.state.fontFamilies.filter(currentFont => fontCategories[`${this.props.variation}`].includes(currentFont))
-                        .filter(currentFont => currentFont.toUpperCase().includes(this.props.searchTerms.toUpperCase()))
-                        .map(currentFont =>
-                            (this.props.mainOrSecondary === "main") ? (
-                                (currentFont === this.props.main_font) ?
-                                    (<div className="listedFont selected" key={currentFont} onClick={() => this.props.setMainFont(currentFont)} style={{ fontFamily: currentFont }}>{currentFont}</div>) :
-                                    (<div className="listedFont" key={currentFont} onClick={() => this.props.setMainFont(currentFont)} style={{ fontFamily: currentFont }}>{currentFont}</div>)
-                            ) : (
-                                    (currentFont === this.props.secondary_font) ?
-                                        (<div className="listedFont selected" key={currentFont} onClick={() => this.props.setSecondaryFont(currentFont)} style={{ fontFamily: currentFont }}>{currentFont}</div>) :
-                                        (<div className="listedFont" key={currentFont} onClick={() => this.props.setSecondaryFont(currentFont)} style={{ fontFamily: currentFont }}>{currentFont}</div>)
+                    {
+                        (this.props.variation === "all") ? (
+                            this.state.fontFamilies
+                                .filter(currentFont => currentFont.toUpperCase().includes(this.props.searchTerms.toUpperCase()))
+                                .map(currentFont =>
+                                    (this.props.mainOrSecondary === "main") ? (
+                                        (currentFont === this.props.main_font) ?
+                                            (<div className="listedFont selected" key={currentFont} onClick={() => this.props.setMainFont(currentFont)} style={{ fontFamily: currentFont }}>{currentFont}</div>) :
+                                            (<div className="listedFont" key={currentFont} onClick={() => this.props.setMainFont(currentFont)} style={{ fontFamily: currentFont }}>{currentFont}</div>)
+                                    ) : (
+                                            (currentFont === this.props.secondary_font) ?
+                                                (<div className="listedFont selected" key={currentFont} onClick={() => this.props.setSecondaryFont(currentFont)} style={{ fontFamily: currentFont }}>{currentFont}</div>) :
+                                                (<div className="listedFont" key={currentFont} onClick={() => this.props.setSecondaryFont(currentFont)} style={{ fontFamily: currentFont }}>{currentFont}</div>)
+                                        )
                                 )
-                        )}
+                        ) : (
+                                this.state.fontFamilies.filter(currentFont => fontCategories[`${this.props.variation}`].includes(currentFont))
+                                    .filter(currentFont => currentFont.toUpperCase().includes(this.props.searchTerms.toUpperCase()))
+                                    .map(currentFont =>
+                                        (this.props.mainOrSecondary === "main") ? (
+                                            (currentFont === this.props.main_font) ?
+                                                (<div className="listedFont selected" key={currentFont} onClick={() => this.props.setMainFont(currentFont)} style={{ fontFamily: currentFont }}>{currentFont}</div>) :
+                                                (<div className="listedFont" key={currentFont} onClick={() => this.props.setMainFont(currentFont)} style={{ fontFamily: currentFont }}>{currentFont}</div>)
+                                        ) : (
+                                                (currentFont === this.props.secondary_font) ?
+                                                    (<div className="listedFont selected" key={currentFont} onClick={() => this.props.setSecondaryFont(currentFont)} style={{ fontFamily: currentFont }}>{currentFont}</div>) :
+                                                    (<div className="listedFont" key={currentFont} onClick={() => this.props.setSecondaryFont(currentFont)} style={{ fontFamily: currentFont }}>{currentFont}</div>)
+                                            )
+                                    )
+                            )
+                    }
                 </InfiniteScroll>
             </div>
         )

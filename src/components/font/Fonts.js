@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import "./fonts.css"
 import FontSelect from './FontSelect';
 
-
 class Fonts extends Component {
 
     state = {

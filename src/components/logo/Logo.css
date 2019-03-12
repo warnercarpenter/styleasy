@@ -1,4 +1,5 @@
 .logo {
+    font-family: var(--main-font);
     text-align: center;
     font-size: 85px;
     font-weight: bold;

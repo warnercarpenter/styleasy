@@ -7,13 +7,13 @@ class MainOrSecondaryButtons extends Component {
                 {
                     (this.props.mainOrSecondary === "main") ? (
                         <span>
-                            <button type="button" data-toggle="button" onClick={() => this.props.setMainOrSecondary("main")} className="btn MOS active">Main</button>
-                            <button type="button" data-toggle="button" onClick={() => this.props.setMainOrSecondary("secondary")} className="btn MOS">Secondary</button>
+                            <button type="button" data-toggle="button" onClick={() => this.props.setMainOrSecondary("main")} className="btn MOS active">Main Font</button>
+                            <button type="button" data-toggle="button" onClick={() => this.props.setMainOrSecondary("secondary")} className="btn MOS">Sub Font</button>
                         </span>
                     ) : (
                             <span>
-                                <button type="button" data-toggle="button" onClick={() => this.props.setMainOrSecondary("main")} className="btn MOS">Main</button>
-                                <button type="button" data-toggle="button" onClick={() => this.props.setMainOrSecondary("secondary")} className="btn MOS active">Secondary</button>
+                                <button type="button" data-toggle="button" onClick={() => this.props.setMainOrSecondary("main")} className="btn MOS">Main Font</button>
+                                <button type="button" data-toggle="button" onClick={() => this.props.setMainOrSecondary("secondary")} className="btn MOS active">Sub Font</button>
                             </span>
                         )
                 }

@@ -3,6 +3,8 @@
 
 const fontCategories = {
     handwriting: [
+        "Comic Sans MS",
+
         "Calligraffitti",
         "Coming Soon",
         "Crafty Girls",
@@ -122,6 +124,12 @@ const fontCategories = {
         "Zeyada"
     ],
     sansSerif: [
+        "Arial",
+        "Helvetica",
+        "Lucida",
+        "Trebuchet MS",
+        "Verdana",
+
         "Aclonica",
         "Droid Sans",
         "Droid Sans Mono",
@@ -287,6 +295,8 @@ const fontCategories = {
         "Ubuntu Mono"
     ],
     display: [
+        "Impact",
+
         "Cherry Cream Soda",
         "Chewy",
         "Creepster Caps",
@@ -515,6 +525,9 @@ const fontCategories = {
         "Yeseva One"
     ],
     serif: [
+        "Times New Roman",
+        "Georgia",
+
         "Droid Serif",
         "jsMath cmbx10",
         "jsMath cmex10",
@@ -643,6 +656,9 @@ const fontCategories = {
         "Vollkorn"
     ],
     monospace: [
+        "Courier",
+        "Courier New",
+
         "Roboto Mono",
         "Inconsolata",
         "Source Code Pro",
