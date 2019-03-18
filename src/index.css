@@ -3,8 +3,8 @@
   --color-medium-dark: #7d7d7d;
   --color-medium-light: #ababab;
   --color-light: #ffffff;
-  --main-font: Helvetica, sans-serif;
-  --secondary-font: sans-serif
+  --main-font: Helvetica;
+  --secondary-font: Arial
 }
 
 html {
@@ -18,6 +18,7 @@ body {
   height: 100vh;
   background-color: var(--color-dark);
   color: var(--color-light);
+  transition: 0.25s
 }
 
 textarea, select, input, button {

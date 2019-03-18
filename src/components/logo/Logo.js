@@ -8,7 +8,7 @@ class Logo extends Component {
     render() {
         return (
             <div>
-                {(this.props.isAuthenticated()) ? (<TopBar setAuth={this.props.setAuth} />) : ("")}
+                {(this.props.isAuthenticated()) ? (<TopBar setAuth={this.props.setAuth} />) : (<div style={{height: "30px"}}></div>)}
                 <div className="logo">
                     <span>styl</span><span style={{ color: "var(--color-medium-dark)" }}>easy</span>
                 </div>

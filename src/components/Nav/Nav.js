@@ -41,17 +41,31 @@ class Nav extends Component {
                     <Link className="nav-link" to="/following">Following</Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/stylekits">Style Kits</Link>
+                    {
+                        (this.props.pathname === "/stylekits") ? (
+                            <Link className="nav-link active" to="/stylekits">
+                                Style Kits
+                        </Link>
+                        ) : (
+                                <Link className="nav-link" to="/stylekits">
+                                    Style Kits
+                        </Link>
+                            )
+                    }
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/currentkit">Current Kit</Link>
+                    {
+                        (this.props.pathname === "/currentkit") ? (
+                            <Link className="nav-link active" to="/currentkit">
+                                Current Kit
+                        </Link>
+                        ) : (
+                                <Link className="nav-link" to="/currentkit">
+                                    Current Kit
+                        </Link>
+                            )
+                    }
                 </li>
-                {/* <button
-                        type="button"
-                        className="btn btn-outline-info"
-                        onClick={this.logout}>
-                        Logout
-            </button> */}
             </ul>
         )
     }

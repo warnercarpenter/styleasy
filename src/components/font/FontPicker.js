@@ -1,29 +1,8 @@
 import React, { Component } from "react"
 import InfiniteScroll from 'react-infinite-scroller';
 import fontCategories from './fontCategories'
-import SystemFonts from './SystemFonts'
 
 class FontPicker extends Component {
-
-    state = {
-        fontFamilies: [],
-    }
-
-    componentDidMount() {
-        fetch(`https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=AIzaSyB9LGN_4znWzWjBthBGAnxBW7u77rvo6tY`)
-            .then(e => e.json())
-            .then(e => {
-                const newState = {
-                    fontFamilies: []
-                }
-                newState.fontFamilies = SystemFonts
-                e.items.forEach(currentFont => {
-                    const family = currentFont.family
-                    newState.fontFamilies.push(family)
-                })
-                this.setState(newState)
-            })
-    }
 
     loadMorePlaceholder() {
         console.log("InfiniteScroll: Loading ...")
@@ -42,7 +21,7 @@ class FontPicker extends Component {
                 >
                     {
                         (this.props.variation === "all") ? (
-                            this.state.fontFamilies
+                            this.props.fontFamilies
                                 .filter(currentFont => currentFont.toUpperCase().includes(this.props.searchTerms.toUpperCase()))
                                 .map(currentFont =>
                                     (this.props.mainOrSecondary === "main") ? (
@@ -56,7 +35,7 @@ class FontPicker extends Component {
                                         )
                                 )
                         ) : (
-                                this.state.fontFamilies.filter(currentFont => fontCategories[`${this.props.variation}`].includes(currentFont))
+                                this.props.fontFamilies.filter(currentFont => fontCategories[`${this.props.variation}`].includes(currentFont))
                                     .filter(currentFont => currentFont.toUpperCase().includes(this.props.searchTerms.toUpperCase()))
                                     .map(currentFont =>
                                         (this.props.mainOrSecondary === "main") ? (

@@ -32,6 +32,7 @@ class FontSelect extends Component {
                 setMainFont={this.props.setMainFont}
                 secondary_font={this.props.secondary_font}
                 setSecondaryFont={this.props.setSecondaryFont}
+                fontFamilies={this.props.fontFamilies}
                 />
             </div>
         )

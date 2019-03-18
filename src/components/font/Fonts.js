@@ -9,7 +9,7 @@ class Fonts extends Component {
         variation: "sansSerif",
         mainOrSecondary: "main",
         main_font: "Helvetica",
-        secondary_font: "sans-serif",
+        secondary_font: "Arial",
         searchTerms: ""
     }
 
@@ -42,6 +42,12 @@ class Fonts extends Component {
 
     componentDidMount() {
         if (this.props.pathname !== "/fonts") { this.props.setPathname("/fonts") }
+        if (localStorage.getItem("main_font") && localStorage.getItem("secondary_font")) {
+            const fontObject = {}
+            fontObject.main_font = localStorage.getItem("main_font")
+            fontObject.secondary_font = localStorage.getItem("secondary_font")
+            this.setState(fontObject)
+        }
     }
 
     render() {
@@ -59,6 +65,7 @@ class Fonts extends Component {
                         setMainFont={this.setMainFont}
                         secondary_font={this.state.secondary_font}
                         setSecondaryFont={this.setSecondaryFont}
+                        fontFamilies={this.props.fontFamilies}
                     />
                 </section>
                 <SaveFontButton saveFonts={this.saveFonts} />

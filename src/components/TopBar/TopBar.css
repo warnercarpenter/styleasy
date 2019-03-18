@@ -27,3 +27,7 @@
 .previewModeButton {
     transform: translate(60px, 4vh);
 }
+
+.previewKitText {
+    margin-bottom: 3px;
+}

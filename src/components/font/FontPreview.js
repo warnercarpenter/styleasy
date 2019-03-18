@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 
-class FontPicker extends Component {
+class FontPreview extends Component {
 
     render() {
         return (
@@ -12,4 +12,4 @@ class FontPicker extends Component {
     }
 }
 
-export default FontPicker
+export default FontPreview

@@ -51,11 +51,11 @@
     margin-top: 3px;
     margin: auto;
     transform: translate(-4.25px, -3.5px);
-    /* display: none; */
   }
 
 .chrome-picker span{
-    font-family: var(--secondary-font)
+    font-family: var(--secondary-font) !important;
+    color: var(--color-medium-light) !important;
 }
 
 .chrome-picker input {
@@ -104,7 +104,7 @@
 .saveColorButton {
     font-size: 12px;
     padding: 10px;
-    width: 130px;
+    width: 180px;
     height: 30px;
     line-height: 0px;
     background: none;
@@ -119,5 +119,5 @@
 .saveColorButton:hover {
     border: solid 1px var(--color-light);
     color: var(--color-light);
-    width: 140px
+    width: 210px
 }

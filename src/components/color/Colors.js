@@ -28,7 +28,7 @@ class Colors extends Component {
     }
 
     setSourceHex = (color) => {
-        this.setState({sourceHex: color.hex.split("#")[1]}, () => this.reloadColors())
+        this.setState({ sourceHex: color.hex.split("#")[1] }, () => this.reloadColors())
     }
 
     reloadColors = () => {
@@ -41,12 +41,24 @@ class Colors extends Component {
         })
         if (palette["900"].l === 1)
             palette["900"].l = 2
+        if (palette["50"].s === 1)
+            palette["50"].s = 2
+        if (palette["100"].s === 1)
+            palette["100"].s = 2
+        if (palette["200"].s === 1)
+            palette["200"].s = 2
+        if (palette["300"].s === 1)
+            palette["300"].s = 2
+        if (palette["800"].s === 1)
+            palette["800"].s = 2
+        if (palette["900"].s === 1)
+            palette["900"].s = 2
 
         if (this.state.variation === "low") {
-            newState.colors = [tinycolor(palette["200"]).toHex(), tinycolor(palette["300"]).toHex(), this.state.sourceHex, tinycolor(palette["800"]).toHex()]
+            newState.colors = [tinycolor(palette["100"]).toHex(), tinycolor(palette["300"]).toHex(), this.state.sourceHex, tinycolor(palette["800"]).toHex()]
         }
         if (this.state.variation === "high") {
-            newState.colors = [tinycolor(palette["100"]).toHex(), tinycolor(palette["200"]).toHex(), this.state.sourceHex, tinycolor(palette["900"]).toHex()]
+            newState.colors = [tinycolor(palette["50"]).toHex(), tinycolor(palette["200"]).toHex(), this.state.sourceHex, tinycolor(palette["900"]).toHex()]
         }
         this.setState(newState)
     }
@@ -61,7 +73,18 @@ class Colors extends Component {
     }
 
     componentDidMount() {
-        if (this.props.pathname !== "/") {this.props.setPathname("/")}
+        if (this.props.pathname !== "/") { this.props.setPathname("/") }
+        if (localStorage.getItem("color1") && localStorage.getItem("color2") && localStorage.getItem("color3") && localStorage.getItem("color4")) {
+            const newState = {}
+            const colorArray = []
+            colorArray.push(localStorage.getItem("color1"))
+            colorArray.push(localStorage.getItem("color2"))
+            colorArray.push(localStorage.getItem("color3"))
+            colorArray.push(localStorage.getItem("color4"))
+            newState.sourceHex = localStorage.getItem("color3")
+            newState.colors = colorArray
+            this.setState(newState)
+        }
     }
 
     render() {
@@ -71,11 +94,11 @@ class Colors extends Component {
                     <ColorDisplay setVariation={this.setVariation} reloadColors={this.reloadColorsVariation} colors={this.state.colors} variation={this.state.variation} />
                     <div className="colorvl"></div>
                     <ChromePicker
-                    color={this.state.sourceHex}
+                        color={this.state.sourceHex}
                         disableAlpha={true}
                         onChange={this.setSourceHex}
                     />
-                <SaveColorButton saveColors={this.saveColors}/>
+                    <SaveColorButton saveColors={this.saveColors} />
                 </section>
             </div>
         )

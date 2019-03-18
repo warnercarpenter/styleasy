@@ -1,0 +1,107 @@
+.styleKits {
+    max-height: 500px;
+    width: 800px;
+    overflow: auto;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.styleKits::-webkit-scrollbar {
+    width: .75em;
+}
+
+.styleKits::-webkit-scrollbar-track {
+    background-color: var(--color-dark);
+}
+
+.styleKits::-webkit-scrollbar-thumb {
+    background-color: var(--color-medium-dark);
+}
+
+.kitCard {
+    margin: auto;
+    margin: 20px;
+    margin-top: 5px;
+    width: 300px;
+    border: solid 1px var(--color-medium-dark);
+    border-radius: 24px;
+    background-color: rgba(255, 255, 255, .05);
+}
+
+.kitName {
+    margin: auto;
+    text-align: center;
+    font-size: 18px;
+    color: var(--color-medium-light)
+}
+
+.topRow {
+    display: flex;
+}
+
+.colorGrid {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+.colorGridSquare {
+    width: 40px;
+    height: 40px;
+}
+
+.kitCardFonts {
+    margin-top: 12px;
+}
+
+.kitCardMainFont {
+    margin-top: 14px;
+    text-align: center;
+    font-size: 28px;
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.kitCardSecondaryFont {
+    font-size: 18px;
+    width: 150px;
+    height: 25px;
+    line-height: 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+.bottomRow {
+    display: flex;
+    justify-content: center;
+}
+
+.kitCardButton {
+    border: none;
+    font-size: 12px;
+    height: 30px;
+    line-height: 0px;
+    background: none;
+    border-radius: 18px;
+    color: var(--color-medium-light);
+    transition: 0.25s;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-left: 12px;
+    margin-right: 12px;
+    height: 30px
+}
+
+.kitCardButton:hover {
+    color: var(--color-light);
+}
