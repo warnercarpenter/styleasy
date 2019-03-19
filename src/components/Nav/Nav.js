@@ -37,9 +37,9 @@ class Nav extends Component {
                             )
                     }
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                     <Link className="nav-link" to="/following">Following</Link>
-                </li>
+                </li> */}
                 <li className="nav-item">
                     {
                         (this.props.pathname === "/stylekits") ? (

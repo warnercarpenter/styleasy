@@ -7,7 +7,7 @@ class IsAuth extends Component {
     return (
       <div className="innerContainer">
         {this.props.isAuthenticated() ? (
-          <UserAccessLayer {...this.props} setStateToLocalStorage={this.props.setStateToLocalStorage} pathname={this.props.pathname} setPathname={this.props.setPathname} />
+          <UserAccessLayer {...this.props} setEditedTrue={this.props.setEditedTrue} setEditedFalse={this.props.setEditedFalse} setStateToSessionStorage={this.props.setStateToSessionStorage} pathname={this.props.pathname} setPathname={this.props.setPathname} />
         ) : (
           <Login {...this.props} />
         )}

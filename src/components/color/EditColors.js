@@ -4,16 +4,21 @@ import ColorDisplay from './ColorDisplay'
 import "./colors.css"
 import tinycolor from 'tinycolor2'
 import materialpalette from 'material-palette'
-import SaveColorButton from './SaveColorButton'
+import kitManager from '../../modules/kitManager';
 import { Prompt } from 'react-router'
 
 
-class Colors extends Component {
+class EditColors extends Component {
 
     state = {
         variation: "high",
         sourceHex: "1122ba",
         colors: ["949df5", "606ff0", "1122ba", "070e4b"],
+        name: "",
+        userId: "",
+        main_font: "",
+        secondary_font: "",
+        id: "",
         edited: false
     }
 
@@ -67,29 +72,39 @@ class Colors extends Component {
     }
 
     saveColors = () => {
-        const colorsForKit = {}
-        colorsForKit.color1 = this.state.colors[0]
-        colorsForKit.color2 = this.state.colors[1]
-        colorsForKit.color3 = this.state.colors[2]
-        colorsForKit.color4 = this.state.colors[3]
-        this.props.saveToSessionStorage(colorsForKit, "colors")
-        this.props.savedToCurrentAlert()
+        const newObject = {}
+        newObject.color1 = this.state.colors[0]
+        newObject.color2 = this.state.colors[1]
+        newObject.color3 = this.state.colors[2]
+        newObject.color4 = this.state.colors[3]
+        newObject.name = this.state.name
+        newObject.userId = this.state.userId
+        newObject.main_font = this.state.main_font
+        newObject.secondary_font = this.state.secondary_font
+        newObject.id = this.state.id
+        this.props.editKitColors(newObject)
         this.setState({edited: false})
     }
 
     componentDidMount() {
-        if (this.props.pathname !== "/") { this.props.setPathname("/") }
-        if (sessionStorage.getItem("color1") && sessionStorage.getItem("color2") && sessionStorage.getItem("color3") && sessionStorage.getItem("color4")) {
-            const newState = {}
-            const colorArray = []
-            colorArray.push(sessionStorage.getItem("color1"))
-            colorArray.push(sessionStorage.getItem("color2"))
-            colorArray.push(sessionStorage.getItem("color3"))
-            colorArray.push(sessionStorage.getItem("color4"))
-            newState.sourceHex = sessionStorage.getItem("color3")
-            newState.colors = colorArray
-            this.setState(newState)
-        }
+        if (this.props.pathname !== "/stylekits") { this.props.setPathname("/stylekits") }
+        const newState = {}
+        const colorArray = []
+        kitManager.get(this.props.match.params.styleKitId)
+            .then(kit => {
+                newState.name = kit.name
+                newState.userId = kit.userId
+                newState.main_font = kit.main_font
+                newState.secondary_font = kit.secondary_font
+                newState.id = kit.id
+                colorArray.push(kit.color1)
+                colorArray.push(kit.color2)
+                colorArray.push(kit.color3)
+                colorArray.push(kit.color4)
+                newState.sourceHex = kit.color3
+                newState.colors = colorArray
+                this.setState(newState)
+            })
     }
 
     render() {
@@ -108,7 +123,10 @@ class Colors extends Component {
                             disableAlpha={true}
                             onChange={this.setSourceHex}
                         />
-                        <SaveColorButton saveColors={this.saveColors} />
+                        <div className="editSaveAndCancel">
+                            <button className="returnButton" type="button" data-toggle="button" onClick={() => this.saveColors()}>Save</button>
+                            <button className="returnButton" type="button" data-toggle="button" onClick={() => this.props.history.push("/stylekits")}>Cancel</button>
+                        </div>
                     </section>
                 </div>
             </React.Fragment>
@@ -116,4 +134,4 @@ class Colors extends Component {
     }
 }
 
-export default Colors
+export default EditColors

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import "./fonts.css"
 import FontSelect from './FontSelect';
-import SaveFontButton from './SaveFontButton'
+import kitManager from '../../modules/kitManager';
 import { Prompt } from 'react-router'
 
-class Fonts extends Component {
+class EditFonts extends Component {
 
     state = {
         variation: "sansSerif",
@@ -12,6 +12,13 @@ class Fonts extends Component {
         main_font: "Helvetica",
         secondary_font: "Arial",
         searchTerms: "",
+        color1: "",
+        color2: "",
+        color3: "",
+        color4: "",
+        name: "",
+        userId: "",
+        id: "",
         edited: false
     }
 
@@ -42,22 +49,36 @@ class Fonts extends Component {
     }
 
     saveFonts = () => {
-        const fontsForKit = {}
-        fontsForKit.main_font = this.state.main_font
-        fontsForKit.secondary_font = this.state.secondary_font
-        this.props.saveToSessionStorage(fontsForKit, "fonts")
-        this.props.savedToCurrentAlert()
-        this.setState({edited: false})
+        const newObject = {}
+        newObject.color1 = this.state.color1
+        newObject.color2 = this.state.color2
+        newObject.color3 = this.state.color3
+        newObject.color4 = this.state.color4
+        newObject.name = this.state.name
+        newObject.userId = this.state.userId
+        newObject.main_font = this.state.main_font
+        newObject.secondary_font = this.state.secondary_font
+        newObject.id = this.state.id
+        this.props.editKitFonts(newObject)
+        this.setState({ edited: false })
     }
 
     componentDidMount() {
-        if (this.props.pathname !== "/fonts") { this.props.setPathname("/fonts") }
-        if (sessionStorage.getItem("main_font") && sessionStorage.getItem("secondary_font")) {
-            const fontObject = {}
-            fontObject.main_font = sessionStorage.getItem("main_font")
-            fontObject.secondary_font = sessionStorage.getItem("secondary_font")
-            this.setState(fontObject)
-        }
+        if (this.props.pathname !== "/stylekits") { this.props.setPathname("/stylekits") }
+        const newState = {}
+        kitManager.get(this.props.match.params.styleKitId)
+            .then(kit => {
+                newState.name = kit.name
+                newState.userId = kit.userId
+                newState.main_font = kit.main_font
+                newState.secondary_font = kit.secondary_font
+                newState.id = kit.id
+                newState.color1 = kit.color1
+                newState.color2 = kit.color2
+                newState.color3 = kit.color3
+                newState.color4 = kit.color4
+                this.setState(newState)
+            })
     }
 
     render() {
@@ -83,11 +104,14 @@ class Fonts extends Component {
                             fontFamilies={this.props.fontFamilies}
                         />
                     </section>
-                    <SaveFontButton saveFonts={this.saveFonts} />
+                    <div className="editSaveAndCancel">
+                        <button className="returnButton" type="button" data-toggle="button" onClick={() => this.saveFonts()}>Save</button>
+                        <button className="returnButton" type="button" data-toggle="button" onClick={() => this.props.history.push("/stylekits")}>Cancel</button>
+                    </div>
                 </div>
             </React.Fragment>
         )
     }
 }
 
-export default Fonts
+export default EditFonts

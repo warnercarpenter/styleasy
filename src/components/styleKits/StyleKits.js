@@ -13,10 +13,10 @@ class StyleKits extends Component {
         return (
             <section className="styleKits">
                 {
-                    this.props.styleKits.filter(currentKit => currentKit.userId = parseInt(sessionStorage.getItem("credentials")))
+                    this.props.styleKits.filter(currentKit => currentKit.userId === parseInt(sessionStorage.getItem("credentials")))
                     .map(currentKit => {
                             return (
-                                <KitCard deleteKit={this.props.deleteKit} key={currentKit.id} kit={currentKit} />
+                                <KitCard setPathname={this.props.setPathname} editKitName={this.props.editKitName} history={this.props.history} deleteKit={this.props.deleteKit} key={currentKit.id} kit={currentKit} />
                             )
                         })
                 }

@@ -19,7 +19,7 @@ export default class UserAccessLayer extends Component {
     return (
       <React.Fragment>
         <ApplicationViews
-          setStateToLocalStorage={this.props.setStateToLocalStorage}
+          setStateToSessionStorage={this.props.setStateToSessionStorage}
           pathname={this.props.pathname}
           setPathname={this.props.setPathname}
           activeUserId={this.activeUserId}

@@ -18,6 +18,7 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.8",
     "react-switch": "^4.1.0",
+    "react-toastify": "^4.5.2",
     "tinycolor2": "^1.4.1"
   },
   "scripts": {

@@ -6,7 +6,12 @@ import Footer from "./components/footer/Footer"
 
 class Styleasy extends Component {
 
+    // a function that return true if the session Storage object contains the key credentials and false if it does not.
+    isAuthenticated = () => sessionStorage.getItem("credentials") !== null
+
     state = {
+        authTrigger: this.isAuthenticated(),
+        pathname: "/",
         color1: "949df5",
         color2: "606ff0",
         color3: "1122ba",
@@ -15,22 +20,14 @@ class Styleasy extends Component {
         secondary_font: "sans-serif"
     }
 
-    // a function that return true if the session Storage object contains the key credentials and false if it does not.
-    isAuthenticated = () => sessionStorage.getItem("credentials") !== null
-
-    state = {
-        authTrigger: this.isAuthenticated(),
-        pathname: "/"
-    }
-
-    setStateToLocalStorage = () => {
+    setStateToSessionStorage = () => {
         this.setState({
-            color1: localStorage.getItem("color1"),
-            color2: localStorage.getItem("color2"),
-            color3: localStorage.getItem("color3"),
-            color4: localStorage.getItem("color4"),
-            main_font: localStorage.getItem("main_font"),
-            secondary_font: localStorage.getItem("secondary_font")
+            color1: sessionStorage.getItem("color1"),
+            color2: sessionStorage.getItem("color2"),
+            color3: sessionStorage.getItem("color3"),
+            color4: sessionStorage.getItem("color4"),
+            main_font: sessionStorage.getItem("main_font"),
+            secondary_font: sessionStorage.getItem("secondary_font")
         })
     }
 
@@ -55,7 +52,7 @@ class Styleasy extends Component {
             main_font={this.state.main_font}
             secondary_font={this.state.secondary_font}
             />
-            <IsAuth setStateToLocalStorage={this.setStateToLocalStorage} pathname={this.state.pathname} isAuthenticated={this.isAuthenticated} setAuth={this.setAuth} setPathname={this.setPathname}/>
+            <IsAuth setStateToSessionStorage={this.setStateToSessionStorage} pathname={this.state.pathname} isAuthenticated={this.isAuthenticated} setAuth={this.setAuth} setPathname={this.setPathname}/>
             <Footer/>
         </div>
     }

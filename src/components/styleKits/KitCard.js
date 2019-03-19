@@ -24,14 +24,21 @@ class KitCard extends Component {
                             <div className="colorGridSquare" style={{ backgroundColor: "#" + this.props.kit.color4 }}></div>
                         </div>
                         <div className="kitCardFonts">
-                            <div className="kitCardMainFont" style={{ fontFamily: this.props.kit.main_font}}>{this.props.kit.main_font}</div>
-                            <div className="kitCardSecondaryFont" style={{ fontFamily: this.props.kit.secondary_font}}>{this.props.kit.secondary_font}</div>
+                            <div className="kitCardMainFont" style={{ fontFamily: this.props.kit.main_font }}>{this.props.kit.main_font}</div>
+                            <div className="kitCardSecondaryFont" style={{ fontFamily: this.props.kit.secondary_font }}>{this.props.kit.secondary_font}</div>
                         </div>
                     </div>
                     <div className="bottomRow">
-                        <button className="kitCardButton" onMouseOver={this.previewKit} onMouseOut={this.cancelPreview}>Preview</button>
-                        <button className="kitCardButton">Details</button>
-                        <button className="kitCardButton">Edit</button>
+                        {/* <button className="kitCardButton" onMouseOver={this.previewKit} onMouseOut={this.cancelPreview}>Preview</button> */}
+                        <button className="kitCardButton" onClick={() => { this.props.history.push(`/stylekits/${this.props.kit.id}/details`) }}>Details</button>
+                        <div className="dropdown">
+                            <div className="dropdown-content">
+                                <div onClick={() => this.props.editKitName(this.props.kit.id)}>Edit name</div>
+                                <div onClick={() => this.props.history.push(`/stylekits/${this.props.kit.id}/editcolors`)}>Edit colors</div>
+                                <div onClick={() => this.props.history.push(`/stylekits/${this.props.kit.id}/editfonts`)}>Edit fonts</div>
+                            </div>
+                            <button className="dropbtn">Edit</button>
+                        </div>
                         <button className="kitCardButton" onClick={() => this.props.deleteKit(this.props.kit.id)}>Delete</button>
                     </div>
                 </div>

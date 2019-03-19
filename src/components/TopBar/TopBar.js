@@ -24,12 +24,12 @@ class TopBar extends Component {
     }
 
     updatePreview = () => {
-        document.documentElement.style.setProperty('--color-light', "#" + localStorage.getItem("color1"))
-        document.documentElement.style.setProperty('--color-medium-light', "#" + localStorage.getItem("color2"))
-        document.documentElement.style.setProperty('--color-medium-dark', "#" + localStorage.getItem("color3"))
-        document.documentElement.style.setProperty('--color-dark', "#" + localStorage.getItem("color4"))
-        document.documentElement.style.setProperty('--main-font', localStorage.getItem("main_font"))
-        document.documentElement.style.setProperty('--secondary-font', localStorage.getItem("secondary_font"))
+        document.documentElement.style.setProperty('--color-light', "#" + sessionStorage.getItem("color1"))
+        document.documentElement.style.setProperty('--color-medium-light', "#" + sessionStorage.getItem("color2"))
+        document.documentElement.style.setProperty('--color-medium-dark', "#" + sessionStorage.getItem("color3"))
+        document.documentElement.style.setProperty('--color-dark', "#" + sessionStorage.getItem("color4"))
+        document.documentElement.style.setProperty('--main-font', sessionStorage.getItem("main_font"))
+        document.documentElement.style.setProperty('--secondary-font', sessionStorage.getItem("secondary_font"))
     }
 
     resetPreview = () => {
@@ -37,8 +37,8 @@ class TopBar extends Component {
         document.documentElement.style.setProperty('--color-medium-light', "#ababab")
         document.documentElement.style.setProperty('--color-medium-dark', "#7d7d7d")
         document.documentElement.style.setProperty('--color-dark', "#151515")
-        document.documentElement.style.setProperty('--main-font', localStorage.getItem("Helvetica, sans-serif"))
-        document.documentElement.style.setProperty('--secondary-font', localStorage.getItem("sans-serif"))
+        document.documentElement.style.setProperty('--main-font', sessionStorage.getItem("Helvetica, sans-serif"))
+        document.documentElement.style.setProperty('--secondary-font', sessionStorage.getItem("sans-serif"))
     }
 
     handleChange = (checked) => {
@@ -61,7 +61,7 @@ class TopBar extends Component {
                             onChange={this.handleChange}
                             checked={this.state.previewMode}
                             offColor={"#7d7d7d"}
-                            onColor={"#" + localStorage.getItem("color3")}
+                            onColor={"#" + sessionStorage.getItem("color3")}
                             boxShadow={"0px 0px 3px black"}
                         />
                     </span>

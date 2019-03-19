@@ -121,3 +121,13 @@
     color: var(--color-light);
     width: 210px
 }
+
+.editSaveAndCancel {
+    margin: auto;
+    margin-top: 5px;
+}
+
+.editSaveAndCancel button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
