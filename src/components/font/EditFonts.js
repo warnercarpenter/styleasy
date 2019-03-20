@@ -7,7 +7,7 @@ import { Prompt } from 'react-router'
 class EditFonts extends Component {
 
     state = {
-        variation: "sansSerif",
+        variation: "all",
         mainOrSecondary: "main",
         main_font: "Helvetica",
         secondary_font: "Arial",
@@ -88,6 +88,7 @@ class EditFonts extends Component {
                     when={this.state.edited === true}
                     message='You have unsaved changes, are you sure you want to leave?'
                 />
+                <div className="kitName" style={{marginBottom: "10px"}}>Editing: <span style={{color: "var(--color-light)"}}>{this.state.name}</span></div>
                 <div className="fontMaster">
                     <section className="fontBox">
                         <FontSelect

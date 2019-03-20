@@ -1,12 +1,19 @@
 import React, { Component } from "react"
 import "./login.css"
 import UserManager from "../../modules/UserManager"
+import { withRouter } from "react-router-dom"
 
-export default class Login extends Component {
+class Login extends Component {
     // Set initial state
     state = {
         password: "",
         username: ""
+    }
+
+    componentDidMount() {
+        if (this.props.pathname !== "/") {
+            this.props.history.push("/")
+        }
     }
 
     // Update state whenever an input field is edited
@@ -90,3 +97,5 @@ export default class Login extends Component {
         )
     }
 }
+
+export default withRouter(Login)

@@ -100,6 +100,7 @@ class Colors extends Component {
                     message='You have unsaved changes, are you sure you want to leave?'
                 />
                 <div className="colorMaster">
+                    <div className="kitName" style={{marginBottom: "10px"}}>Editing: <span style={{color: "var(--color-light)"}}>Current Kit</span></div>
                     <section className="colorBox">
                         <ColorDisplay setVariation={this.setVariation} reloadColors={this.reloadColorsVariation} colors={this.state.colors} variation={this.state.variation} />
                         <div className="colorvl"></div>

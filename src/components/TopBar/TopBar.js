@@ -1,6 +1,8 @@
 import React, { Component } from "react"
 import "./TopBar.css"
 import Switch from "react-switch";
+import ReactTooltip from 'react-tooltip'
+import { withRouter } from "react-router-dom"
 
 class TopBar extends Component {
     state = {
@@ -48,36 +50,46 @@ class TopBar extends Component {
     logout = () => {
         this.resetPreview()
         sessionStorage.clear("credentials")
+        sessionStorage.clear("color1")
+        sessionStorage.clear("color2")
+        sessionStorage.clear("color3")
+        sessionStorage.clear("color4")
+        sessionStorage.clear("main_font")
+        sessionStorage.clear("secondary_font")
+        sessionStorage.clear("username")
         this.props.setAuth()
     }
 
     render() {
         return (
-            <div className="topBar">
-                <label className="previewModeButton">
-                    <div className="previewKitText">Preview Current Kit</div>
-                    <span className="toggle">
-                        <Switch
-                            onChange={this.handleChange}
-                            checked={this.state.previewMode}
-                            offColor={"#7d7d7d"}
-                            onColor={"#" + sessionStorage.getItem("color3")}
-                            boxShadow={"0px 0px 3px black"}
-                        />
-                    </span>
-                </label>
-                <div className="logoutSection">
-                    Welcome, {sessionStorage.getItem("username")} <br />
-                    <button
-                        type="button"
-                        className="logoutButton"
-                        onClick={this.logout}>
-                        Sign out
+            <React.Fragment>
+                <ReactTooltip place="bottom" type="light" effect="solid"/>
+                <div className="topBar">
+                    <label className="previewModeButton">
+                        <div className="previewKitText">Preview Current Kit <div className="tooltip" data-tip="Active to preview your selections">?</div></div>
+                        <span className="toggle">
+                            <Switch
+                                onChange={this.handleChange}
+                                checked={this.state.previewMode}
+                                offColor={"#7d7d7d"}
+                                onColor={"#" + sessionStorage.getItem("color3")}
+                                boxShadow={"0px 0px 3px black"}
+                            />
+                        </span>
+                    </label>
+                    <div className="logoutSection">
+                        Welcome, {sessionStorage.getItem("username")} <br />
+                        <button
+                            type="button"
+                            className="logoutButton"
+                            onClick={this.logout}>
+                            Sign out
                     </button>
+                    </div>
                 </div>
-            </div>
+            </React.Fragment>
         )
     }
 }
 
-export default TopBar
+export default withRouter(TopBar)

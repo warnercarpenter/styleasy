@@ -19,6 +19,7 @@
     "react-scripts": "2.1.8",
     "react-switch": "^4.1.0",
     "react-toastify": "^4.5.2",
+    "react-tooltip": "^3.10.0",
     "tinycolor2": "^1.4.1"
   },
   "scripts": {

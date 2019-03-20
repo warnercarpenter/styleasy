@@ -43,3 +43,18 @@ textarea, select, input, button {
 button {
   font-family: var(--secondary-font);
 }
+
+.tooltip {
+  display: inline-block;
+  font-size: 12px;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  text-align: center;
+  background-color: var(--color-medium-dark);
+  color: var(--color-light);
+  border-radius: 100%;
+  margin-left: 5px;
+  transform: translateY(-2px);
+  user-select: none;
+}

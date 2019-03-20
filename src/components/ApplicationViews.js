@@ -162,7 +162,7 @@ class ApplicationViews extends Component {
           return <EditFonts {...props} fontFamilies={this.state.fontFamilies} pathname={this.props.pathname} setPathname={this.props.setPathname} editKitFonts={this.editKitColorsOrFonts} />
         }} />
         <Route exact path="/currentkit" render={props => {
-          return <CurrentKit saveKit={this.saveKit} pathname={this.props.pathname} setPathname={this.props.setPathname} />
+          return <CurrentKit {...props} saveKit={this.saveKit} pathname={this.props.pathname} setPathname={this.props.setPathname} />
         }} />
         <ToastContainer />
       </React.Fragment>
