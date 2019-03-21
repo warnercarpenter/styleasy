@@ -25,7 +25,9 @@
 }
 
 .previewModeButton {
-    transform: translate(60px, 4vh);
+    position: fixed;
+    top: 4vh;
+    left: 60px
 }
 
 .previewKitText {

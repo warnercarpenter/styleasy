@@ -14,6 +14,14 @@ class StyleKitDetails extends Component {
         secondary_font: ""
     }
 
+    editName = () => {
+        const newName = window.prompt("Enter new name")
+        if (newName !== null && newName !== "") {
+            this.setState({name: newName})
+            this.props.editKitName(this.state.id, newName)
+        }
+    }
+
     componentDidMount() {
         if (this.props.pathname !== "/stylekits") { this.props.setPathname("/stylekits") }
         kitManager.get(this.props.match.params.styleKitId)
@@ -62,7 +70,12 @@ class StyleKitDetails extends Component {
                         <div className="secondaryFontChoiceDisplay" style={{ width: "100%", fontFamily: this.state.secondary_font }}>{this.state.secondary_font}</div>
                     </div>
                 </div>
-                <button type="button" data-toggle="button" onClick={() => this.props.history.push("/stylekits")} className="returnButton">Return</button>
+                <div className="colorRow" style={{ width: "400px", margin: "auto" }}>
+                    <button type="button" data-toggle="button" onClick={() => this.editName()} className="returnButton">Edit Name</button>
+                    <button type="button" data-toggle="button" onClick={() => this.props.history.push(`/${this.state.id}/editcolors`)} className="returnButton">Edit Colors</button>
+                    <button type="button" data-toggle="button" onClick={() => this.props.history.push(`/${this.state.id}/editfonts`)} className="returnButton">Edit Fonts</button>
+                </div>
+                <button type="button" data-toggle="button" onClick={() => this.props.history.push("/")} className="returnButton" style={{border: "none"}}>Return to Kits</button>
             </div>
         )
     }

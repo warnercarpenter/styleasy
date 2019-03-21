@@ -19,6 +19,9 @@ export default class UserAccessLayer extends Component {
     return (
       <React.Fragment>
         <ApplicationViews
+          changePreviewMode={this.props.changePreviewMode}
+          previewOption={this.props.previewOption}
+          editPreviewOption={this.props.editPreviewOption}
           setStateToSessionStorage={this.props.setStateToSessionStorage}
           pathname={this.props.pathname}
           setPathname={this.props.setPathname}

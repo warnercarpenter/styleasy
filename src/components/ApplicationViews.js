@@ -58,33 +58,39 @@ class ApplicationViews extends Component {
       .then(() => this.props.history.push("/stylekits"))
   };
 
-  editKitName = (id) => {
-    const newName = window.prompt("Enter a new name")
-    if (newName !== null && newName !== "") {
-      const newKit = {}
-      kitManager.get(id)
-        .then(kit => {
-          newKit.id = kit.id
-          newKit.userId = kit.userId
-          newKit.name = newName
-          newKit.color1 = kit.color1
-          newKit.color2 = kit.color2
-          newKit.color3 = kit.color3
-          newKit.color4 = kit.color4
-          newKit.main_font = kit.main_font
-          newKit.secondary_font = kit.secondary_font
-        })
-        .then(() => kitManager.put(newKit))
-        .then(kitManager.getAll)
-        .then(e => this.setState({ styleKits: e }))
-    }
+  editKitName = (id, newName) => {
+    const newKit = {}
+    kitManager.get(id)
+      .then(kit => {
+        newKit.id = kit.id
+        newKit.userId = kit.userId
+        newKit.name = newName
+        newKit.color1 = kit.color1
+        newKit.color2 = kit.color2
+        newKit.color3 = kit.color3
+        newKit.color4 = kit.color4
+        newKit.main_font = kit.main_font
+        newKit.secondary_font = kit.secondary_font
+      })
+      .then(() => kitManager.put(newKit))
+      .then(kitManager.getAll)
+      .then(e => this.setState({ styleKits: e }))
   }
 
-  editKitColorsOrFonts = (editedKitObject) => {
+  editKitColorsOrFonts = (editedKitObject, id) => {
     kitManager.put(editedKitObject)
       .then(kitManager.getAll)
       .then(e => this.setState({ styleKits: e }))
-      .then(() => this.props.history.push("/stylekits"))
+      .then(() => this.props.history.push(`/${id}/details`))
+  }
+
+  resetStyling = () => {
+    document.documentElement.style.setProperty('--color-light', "#ffffff")
+    document.documentElement.style.setProperty('--color-medium-light', "#ababab")
+    document.documentElement.style.setProperty('--color-medium-dark', "#7d7d7d")
+    document.documentElement.style.setProperty('--color-dark', "#151515")
+    document.documentElement.style.setProperty('--main-font', sessionStorage.getItem("Helvetica, sans-serif"))
+    document.documentElement.style.setProperty('--secondary-font', sessionStorage.getItem("sans-serif"))
   }
 
   saveToSessionStorage = (toSave, type) => {
@@ -143,27 +149,27 @@ class ApplicationViews extends Component {
     return (
       <React.Fragment>
         <Route path="/login" component={Login} />
-        <Route exact path="/" render={props => {
+        <Route exact path="/colors" render={props => {
           return <Colors savedToCurrentAlert={this.savedToCurrentAlert} saveToSessionStorage={this.saveToSessionStorage} pathname={this.props.pathname} setPathname={this.props.setPathname} />
         }} />
         <Route exact path="/fonts" render={props => {
           return <Fonts savedToCurrentAlert={this.savedToCurrentAlert} fontFamilies={this.state.fontFamilies} saveToSessionStorage={this.saveToSessionStorage} pathname={this.props.pathname} setPathname={this.props.setPathname} />
         }} />
-        <Route exact path="/stylekits" render={props => {
+        <Route exact path="/" render={props => {
           return <StyleKits {...props} editKitName={this.editKitName} deleteKit={this.deleteKit} pathname={this.props.pathname} setPathname={this.props.setPathname} styleKits={this.state.styleKits} />
         }} />
-        <Route path="/stylekits/:styleKitId(\d+)/details" render={props => {
-          return <StyleKitDetails {...props} pathname={this.props.pathname} setPathname={this.props.setPathname} />
+        <Route path="/:styleKitId(\d+)/details" render={props => {
+          return <StyleKitDetails {...props} editKitName={this.editKitName} pathname={this.props.pathname} setPathname={this.props.setPathname} />
         }} />
-        <Route path="/stylekits/:styleKitId(\d+)/editcolors" render={props => {
-          return <EditColors {...props} pathname={this.props.pathname} setPathname={this.props.setPathname} editKitColors={this.editKitColorsOrFonts} />
+        <Route path="/:styleKitId(\d+)/editcolors" render={props => {
+          return <EditColors {...props} previewOption={this.props.previewOption} changePreviewMode={this.props.changePreviewMode} resetStyling={this.resetStyling} setStateToSessionStorage={this.props.setStateToSessionStorage} editPreviewOption={this.props.editPreviewOption} pathname={this.props.pathname} setPathname={this.props.setPathname} editKitColors={this.editKitColorsOrFonts} />
         }} />
-        <Route path="/stylekits/:styleKitId(\d+)/editfonts" render={props => {
+        <Route path="/:styleKitId(\d+)/editfonts" render={props => {
           return <EditFonts {...props} fontFamilies={this.state.fontFamilies} pathname={this.props.pathname} setPathname={this.props.setPathname} editKitFonts={this.editKitColorsOrFonts} />
         }} />
-        <Route exact path="/currentkit" render={props => {
+        {/* <Route exact path="/currentkit" render={props => {
           return <CurrentKit {...props} saveKit={this.saveKit} pathname={this.props.pathname} setPathname={this.props.setPathname} />
-        }} />
+        }} /> */}
         <ToastContainer />
       </React.Fragment>
     )

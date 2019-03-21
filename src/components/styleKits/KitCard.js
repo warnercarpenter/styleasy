@@ -15,7 +15,7 @@ class KitCard extends Component {
         return (
             <div className="kitCardMaster">
                 <div className="kitName">{this.props.kit.name}</div>
-                <div className="kitCard">
+                <div className="kitCard" onClick={() => { this.props.history.push(`/${this.props.kit.id}/details`) }}>
                     <div className="topRow">
                         <div className="colorGrid">
                             <div className="colorGridSquare" style={{ backgroundColor: "#" + this.props.kit.color1 }}></div>
@@ -28,8 +28,7 @@ class KitCard extends Component {
                             <div className="kitCardSecondaryFont" style={{ fontFamily: this.props.kit.secondary_font }}>{this.props.kit.secondary_font}</div>
                         </div>
                     </div>
-                    <div className="bottomRow">
-                        {/* <button className="kitCardButton" onMouseOver={this.previewKit} onMouseOut={this.cancelPreview}>Preview</button> */}
+                    {/* <div className="bottomRow">
                         <button className="kitCardButton" onClick={() => { this.props.history.push(`/stylekits/${this.props.kit.id}/details`) }}>Details</button>
                         <div className="dropdown">
                             <div className="dropdown-content">
@@ -40,7 +39,7 @@ class KitCard extends Component {
                             <button className="dropbtn">Edit</button>
                         </div>
                         <button className="kitCardButton" onClick={() => this.props.deleteKit(this.props.kit.id)}>Delete</button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         )

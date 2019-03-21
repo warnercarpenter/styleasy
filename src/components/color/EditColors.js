@@ -6,6 +6,8 @@ import tinycolor from 'tinycolor2'
 import materialpalette from 'material-palette'
 import kitManager from '../../modules/kitManager';
 import { Prompt } from 'react-router'
+import ReactTooltip from 'react-tooltip'
+import Switch from "react-switch";
 
 
 class EditColors extends Component {
@@ -19,13 +21,16 @@ class EditColors extends Component {
         main_font: "",
         secondary_font: "",
         id: "",
-        edited: false
+        edited: false,
+        previewMode: false
     }
 
     setVariation = (variation) => {
         const newState = {}
         newState.variation = variation
-        this.setState(newState, () => this.reloadColors())
+        this.setState(newState, () => {
+            this.reloadColors()
+        })
     }
 
     setScheme = (scheme) => {
@@ -68,7 +73,17 @@ class EditColors extends Component {
         if (this.state.variation === "high") {
             newState.colors = [tinycolor(palette["50"]).toHex(), tinycolor(palette["200"]).toHex(), this.state.sourceHex, tinycolor(palette["900"]).toHex()]
         }
-        this.setState(newState)
+        this.setState(newState, () => this.reloadPreview())
+    }
+
+    reloadPreview = () => {
+        sessionStorage.setItem("color1", this.state.colors[0])
+        sessionStorage.setItem("color2", this.state.colors[1])
+        sessionStorage.setItem("color3", this.state.colors[2])
+        sessionStorage.setItem("color4", this.state.colors[3])
+        if (this.state.previewMode) {
+            setTimeout(() => this.updatePreview(), 100)
+        }
     }
 
     saveColors = () => {
@@ -82,12 +97,41 @@ class EditColors extends Component {
         newObject.main_font = this.state.main_font
         newObject.secondary_font = this.state.secondary_font
         newObject.id = this.state.id
-        this.props.editKitColors(newObject)
-        this.setState({edited: false})
+        this.props.editKitColors(newObject, this.state.id)
+        this.setState({ edited: false })
+    }
+
+    updatePreview = () => {
+        document.documentElement.style.setProperty('--color-light', "#" + sessionStorage.getItem("color1"))
+        document.documentElement.style.setProperty('--color-medium-light', "#" + sessionStorage.getItem("color2"))
+        document.documentElement.style.setProperty('--color-medium-dark', "#" + sessionStorage.getItem("color3"))
+        document.documentElement.style.setProperty('--color-dark', "#" + sessionStorage.getItem("color4"))
+        document.documentElement.style.setProperty('--main-font', sessionStorage.getItem("main_font"))
+        document.documentElement.style.setProperty('--secondary-font', sessionStorage.getItem("secondary_font"))
+    }
+
+    resetPreview = () => {
+        document.documentElement.style.setProperty('--color-light', "#ffffff")
+        document.documentElement.style.setProperty('--color-medium-light', "#ababab")
+        document.documentElement.style.setProperty('--color-medium-dark', "#7d7d7d")
+        document.documentElement.style.setProperty('--color-dark', "#151515")
+        document.documentElement.style.setProperty('--main-font', sessionStorage.getItem("Helvetica, sans-serif"))
+        document.documentElement.style.setProperty('--secondary-font', sessionStorage.getItem("sans-serif"))
+    }
+
+    handleChange = (checked) => {
+        this.setState({ previewMode: checked });
+    }
+
+    componentDidUpdate() {
+        if (this.state.previewMode === true) {
+            this.updatePreview()
+        } else {
+            this.resetPreview()
+        }
     }
 
     componentDidMount() {
-        if (this.props.pathname !== "/stylekits") { this.props.setPathname("/stylekits") }
         const newState = {}
         const colorArray = []
         kitManager.get(this.props.match.params.styleKitId)
@@ -103,6 +147,11 @@ class EditColors extends Component {
                 colorArray.push(kit.color4)
                 newState.sourceHex = kit.color3
                 newState.colors = colorArray
+                sessionStorage.setItem("color1", colorArray[0])
+                sessionStorage.setItem("color2", colorArray[1])
+                sessionStorage.setItem("color3", colorArray[2])
+                sessionStorage.setItem("color4", colorArray[3])
+                this.props.setStateToSessionStorage()
                 this.setState(newState)
             })
     }
@@ -110,26 +159,43 @@ class EditColors extends Component {
     render() {
         return (
             <React.Fragment>
+                <ReactTooltip multiline={true} place="bottom" type="light" effect="solid"/>
                 <Prompt
                     when={this.state.edited === true}
                     message='You have unsaved changes, are you sure you want to leave?'
                 />
                 <div className="colorMaster">
-                <div className="kitName" style={{marginBottom: "10px"}}>Editing: <span style={{color: "var(--color-light)"}}>{this.state.name}</span></div>
+                    <div className="kitName" style={{ marginBottom: "10px" }}>Editing: <span style={{ color: "var(--color-light)" }}>{this.state.name}</span></div>
                     <section className="colorBox">
                         <ColorDisplay setVariation={this.setVariation} reloadColors={this.reloadColorsVariation} colors={this.state.colors} variation={this.state.variation} />
                         <div className="colorvl"></div>
-                        <ChromePicker
-                            color={this.state.sourceHex}
-                            disableAlpha={true}
-                            onChange={this.setSourceHex}
-                        />
+                        <div>
+                            <ChromePicker
+                                color={this.state.sourceHex}
+                                disableAlpha={true}
+                                onChangeComplete={this.setSourceHex}
+                            />
+                        </div>
                         <div className="editSaveAndCancel">
                             <button className="returnButton" type="button" data-toggle="button" onClick={() => this.saveColors()}>Save</button>
-                            <button className="returnButton" type="button" data-toggle="button" onClick={() => this.props.history.push("/stylekits")}>Cancel</button>
+                            <button className="returnButton" type="button" data-toggle="button" onClick={() => this.props.history.push("/")}>Return</button>
                         </div>
                     </section>
                 </div>
+                <label className="previewModeButton">
+                        <div className="previewKitText">Preview Current Selections <div className="tooltip"
+                        data-tip="Default colors and fonts will be used
+                        <br/>if none have been selected">?</div></div>
+                        <span className="toggle">
+                            <Switch
+                                onChange={this.handleChange}
+                                checked={this.state.previewMode}
+                                offColor={"#7d7d7d"}
+                                onColor={"#" + this.state.colors[2]}
+                                boxShadow={"0px 0px 3px black"}
+                            />
+                        </span>
+                    </label>
             </React.Fragment>
         )
     }

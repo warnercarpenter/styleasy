@@ -10,7 +10,7 @@ class TopBar extends Component {
     }
 
     componentDidUpdate() {
-        if (this.state.previewMode === true) {
+        if (this.props.previewMode === true) {
             this.updatePreview()
         } else {
             this.resetPreview()
@@ -18,7 +18,7 @@ class TopBar extends Component {
     }
 
     componentWillReceiveProps() {
-        if (this.state.previewMode === true) {
+        if (this.props.previewMode === true) {
             this.updatePreview()
         } else {
             this.resetPreview()
@@ -63,20 +63,27 @@ class TopBar extends Component {
     render() {
         return (
             <React.Fragment>
-                <ReactTooltip place="bottom" type="light" effect="solid"/>
+                <ReactTooltip multiline={true} place="bottom" type="light" effect="solid"/>
                 <div className="topBar">
+                {(this.props.previewOption === true) ? (
                     <label className="previewModeButton">
-                        <div className="previewKitText">Preview Current Kit <div className="tooltip" data-tip="Active to preview your selections">?</div></div>
+                        <div className="previewKitText">Preview Current Selections <div className="tooltip"
+                        data-tip="Default colors and fonts will be used
+                        <br/>if none have been selected">?</div></div>
                         <span className="toggle">
                             <Switch
                                 onChange={this.handleChange}
-                                checked={this.state.previewMode}
+                                checked={this.props.changePreviewMode(true)}
                                 offColor={"#7d7d7d"}
                                 onColor={"#" + sessionStorage.getItem("color3")}
                                 boxShadow={"0px 0px 3px black"}
                             />
                         </span>
                     </label>
+                ) : (
+                    <div>{null}</div>
+                )
+                }
                     <div className="logoutSection">
                         Welcome, {sessionStorage.getItem("username")} <br />
                         <button

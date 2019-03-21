@@ -107,7 +107,7 @@ class EditFonts extends Component {
                     </section>
                     <div className="editSaveAndCancel">
                         <button className="returnButton" type="button" data-toggle="button" onClick={() => this.saveFonts()}>Save</button>
-                        <button className="returnButton" type="button" data-toggle="button" onClick={() => this.props.history.push("/stylekits")}>Cancel</button>
+                        <button className="returnButton" type="button" data-toggle="button" onClick={() => this.props.history.push("/")}>Return</button>
                     </div>
                 </div>
             </React.Fragment>

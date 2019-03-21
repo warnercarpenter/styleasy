@@ -8,11 +8,11 @@ class Logo extends Component {
     render() {
         return (
             <div>
-                {(this.props.isAuthenticated()) ? (<TopBar setAuth={this.props.setAuth} />) : (<div style={{height: "30px"}}></div>)}
+                {(this.props.isAuthenticated()) ? (<TopBar changePreviewMode={this.props.changePreviewMode} previewMode={this.props.previewMode} previewOption={this.props.previewOption} setAuth={this.props.setAuth} />) : (<div style={{height: "30px"}}></div>)}
                 <div className="logo">
                     <span>styl</span><span style={{ color: "var(--color-medium-dark)" }}>easy</span>
                 </div>
-                {(this.props.isAuthenticated()) ? (<Nav pathname={this.props.pathname} />) : ("")}
+                {/* {(this.props.isAuthenticated()) ? (<Nav pathname={this.props.pathname} />) : ("")} */}
             </div>
 
         )

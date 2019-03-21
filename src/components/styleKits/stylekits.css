@@ -29,6 +29,9 @@
     border-radius: 24px;
     background-color: rgba(255, 255, 255, .05);
 }
+.kitCard:hover {
+    background-color: var(--color-medium-dark)
+}
 
 .kitName {
     margin: auto;
