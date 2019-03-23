@@ -1,18 +1,15 @@
 import React, { Component } from "react"
 import { Route, Redirect } from "react-router-dom"
 import Login from "./Auth/Login"
-import Colors from "./color/Colors"
+import Logout from "./logout/Logout"
+import Logo from "./logo/Logo.js"
 import EditColors from "./color/EditColors"
-import Fonts from "./font/Fonts"
 import EditFonts from "./font/EditFonts"
-import CurrentKit from "./currentKit/CurrentKit"
 import SystemFonts from "./font/SystemFonts";
 import kitManager from "../modules/kitManager"
 import { withRouter } from 'react-router'
 import StyleKits from "./styleKits/StyleKits";
 import StyleKitDetails from "./styleKits/StyleKitDetails"
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 class ApplicationViews extends Component {
 
@@ -21,12 +18,7 @@ class ApplicationViews extends Component {
     styleKits: []
   }
 
-  savedToCurrentAlert = () => {
-    toast("Saved to current kit!", {
-      position: toast.POSITION.BOTTOM_RIGHT,
-      autoClose: 2000
-    });
-  }
+  isAuthenticated = () => sessionStorage.getItem("credentials") !== null
 
   deleteKit = (kitId) => {
     kitManager.delete(kitId)
@@ -148,29 +140,56 @@ class ApplicationViews extends Component {
   render() {
     return (
       <React.Fragment>
-        <Route path="/login" component={Login} />
-        <Route exact path="/colors" render={props => {
-          return <Colors savedToCurrentAlert={this.savedToCurrentAlert} saveToSessionStorage={this.saveToSessionStorage} pathname={this.props.pathname} setPathname={this.props.setPathname} />
+        <div>
+          {(this.isAuthenticated()) ? (<Logout history={this.props.history} setAuth={this.props.setAuth} />) : (<div style={{ height: "30px" }}></div>)}
+          <Logo history={this.props.history}/>
+        </div>
+
+        <Route exact path="/login" render={(props) => {
+          return <Login {...props} />
         }} />
-        <Route exact path="/fonts" render={props => {
-          return <Fonts savedToCurrentAlert={this.savedToCurrentAlert} fontFamilies={this.state.fontFamilies} saveToSessionStorage={this.saveToSessionStorage} pathname={this.props.pathname} setPathname={this.props.setPathname} />
+
+        <Route exact path="/" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <StyleKits {...props}
+              styleKits={this.state.styleKits} />
+          } else {
+            return <Redirect to="/login" />
+          }
         }} />
-        <Route exact path="/" render={props => {
-          return <StyleKits {...props} editKitName={this.editKitName} deleteKit={this.deleteKit} pathname={this.props.pathname} setPathname={this.props.setPathname} styleKits={this.state.styleKits} />
+
+        <Route exact path="/:styleKitId(\d+)/details" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <StyleKitDetails {...props}
+              editKitName={this.editKitName} />
+          } else {
+            return <Redirect to="/login" />
+          }
         }} />
-        <Route path="/:styleKitId(\d+)/details" render={props => {
-          return <StyleKitDetails {...props} editKitName={this.editKitName} pathname={this.props.pathname} setPathname={this.props.setPathname} />
+
+        <Route exact path="/:styleKitId(\d+)/editcolors" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <EditColors {...props}
+              previewOption={this.props.previewOption}
+              changePreviewMode={this.props.changePreviewMode}
+              resetStyling={this.resetStyling}
+              setStateToSessionStorage={this.props.setStateToSessionStorage}
+              editPreviewOption={this.props.editPreviewOption}
+              editKitColors={this.editKitColorsOrFonts} />
+          } else {
+            return <Redirect to="/login" />
+          }
         }} />
-        <Route path="/:styleKitId(\d+)/editcolors" render={props => {
-          return <EditColors {...props} previewOption={this.props.previewOption} changePreviewMode={this.props.changePreviewMode} resetStyling={this.resetStyling} setStateToSessionStorage={this.props.setStateToSessionStorage} editPreviewOption={this.props.editPreviewOption} pathname={this.props.pathname} setPathname={this.props.setPathname} editKitColors={this.editKitColorsOrFonts} />
+
+        <Route exact path="/:styleKitId(\d+)/editfonts" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <EditFonts {...props}
+              fontFamilies={this.state.fontFamilies}
+              editKitFonts={this.editKitColorsOrFonts} />
+          } else {
+            return <Redirect to="/login" />
+          }
         }} />
-        <Route path="/:styleKitId(\d+)/editfonts" render={props => {
-          return <EditFonts {...props} fontFamilies={this.state.fontFamilies} pathname={this.props.pathname} setPathname={this.props.setPathname} editKitFonts={this.editKitColorsOrFonts} />
-        }} />
-        {/* <Route exact path="/currentkit" render={props => {
-          return <CurrentKit {...props} saveKit={this.saveKit} pathname={this.props.pathname} setPathname={this.props.setPathname} />
-        }} /> */}
-        <ToastContainer />
       </React.Fragment>
     )
   }

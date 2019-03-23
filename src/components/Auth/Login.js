@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import "./login.css"
 import UserManager from "../../modules/UserManager"
 import { withRouter } from "react-router-dom"
 
@@ -8,12 +7,6 @@ class Login extends Component {
     state = {
         password: "",
         username: ""
-    }
-
-    componentDidMount() {
-        if (this.props.pathname !== "/") {
-            this.props.history.push("/")
-        }
     }
 
     // Update state whenever an input field is edited
@@ -37,7 +30,7 @@ class Login extends Component {
                     UserManager.addUser(newUser).then(user => {
                         sessionStorage.setItem("credentials", parseInt(user.id))
                         sessionStorage.setItem("username", user.username)
-                        this.props.setAuth()
+                        this.props.history.push("/")
                     })
                 }
             })
@@ -56,7 +49,7 @@ class Login extends Component {
                     } else {
                         sessionStorage.setItem("credentials", parseInt(user[0].id))
                         sessionStorage.setItem("username", user[0].username)
-                        this.props.setAuth()
+                        this.props.history.push("/")
                     }
                 }
             )

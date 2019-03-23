@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import "./fonts.css"
 import FontSelect from './FontSelect';
 import kitManager from '../../modules/kitManager';
 import { Prompt } from 'react-router'
@@ -7,10 +6,10 @@ import { Prompt } from 'react-router'
 class EditFonts extends Component {
 
     state = {
-        variation: "all",
+        variation: "sansSerif",
         mainOrSecondary: "main",
-        main_font: "Helvetica",
-        secondary_font: "Arial",
+        main_font: "",
+        secondary_font: "",
         searchTerms: "",
         color1: "",
         color2: "",
@@ -59,12 +58,11 @@ class EditFonts extends Component {
         newObject.main_font = this.state.main_font
         newObject.secondary_font = this.state.secondary_font
         newObject.id = this.state.id
-        this.props.editKitFonts(newObject)
+        this.props.editKitFonts(newObject, this.state.id)
         this.setState({ edited: false })
     }
 
     componentDidMount() {
-        if (this.props.pathname !== "/stylekits") { this.props.setPathname("/stylekits") }
         const newState = {}
         kitManager.get(this.props.match.params.styleKitId)
             .then(kit => {
@@ -88,26 +86,34 @@ class EditFonts extends Component {
                     when={this.state.edited === true}
                     message='You have unsaved changes, are you sure you want to leave?'
                 />
-                <div className="kitName" style={{marginBottom: "10px"}}>Editing: <span style={{color: "var(--color-light)"}}>{this.state.name}</span></div>
-                <div className="fontMaster">
-                    <section className="fontBox">
-                        <FontSelect
-                            setMainOrSecondary={this.setMainOrSecondary}
-                            mainOrSecondary={this.state.mainOrSecondary}
-                            setVariation={this.setVariation}
-                            variation={this.state.variation}
-                            searchTerms={this.state.searchTerms}
-                            changeSearchTerms={this.changeSearchTerms}
-                            main_font={this.state.main_font}
-                            setMainFont={this.setMainFont}
-                            secondary_font={this.state.secondary_font}
-                            setSecondaryFont={this.setSecondaryFont}
-                            fontFamilies={this.props.fontFamilies}
-                        />
-                    </section>
-                    <div className="editSaveAndCancel">
+                <div className="editFontMaster">
+                {
+                    (this.state.mainOrSecondary === "main") ? (
+                        <div className="kitName" style={{ marginBottom: "10px" }}>Editing <span style={{ color: "var(--color-light)" }}>Main Font</span> for: <span style={{ color: "var(--color-light)" }}>{this.state.name}</span></div>
+                        ) : (
+                            <div className="kitName" style={{ marginBottom: "10px" }}>Editing <span style={{ color: "var(--color-light)" }}>Secondary Font</span> for: <span style={{ color: "var(--color-light)" }}>{this.state.name}</span></div>
+                    )
+                }
+                    <div className="fontMaster">
+                        <section className="fontBox">
+                            <FontSelect
+                                setMainOrSecondary={this.setMainOrSecondary}
+                                mainOrSecondary={this.state.mainOrSecondary}
+                                setVariation={this.setVariation}
+                                variation={this.state.variation}
+                                searchTerms={this.state.searchTerms}
+                                changeSearchTerms={this.changeSearchTerms}
+                                main_font={this.state.main_font}
+                                setMainFont={this.setMainFont}
+                                secondary_font={this.state.secondary_font}
+                                setSecondaryFont={this.setSecondaryFont}
+                                fontFamilies={this.props.fontFamilies}
+                            />
+                        </section>
+                    </div>
+                    <div className="editSaveAndCancel" style={{marginTop: "0px"}}>
                         <button className="returnButton" type="button" data-toggle="button" onClick={() => this.saveFonts()}>Save</button>
-                        <button className="returnButton" type="button" data-toggle="button" onClick={() => this.props.history.push("/")}>Return</button>
+                        <button className="returnButton" type="button" data-toggle="button" onClick={() => this.props.history.push(`/${this.state.id}/details`)}>Cancel</button>
                     </div>
                 </div>
             </React.Fragment>

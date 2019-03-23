@@ -7,6 +7,19 @@
   --secondary-font: Arial
 }
 
+.logo {
+  font-family: var(--main-font);
+  text-align: center;
+  font-size: 85px;
+  font-weight: bold;
+  margin-top: 0px;
+  user-select: none;
+}
+
+.logo:hover {
+  cursor: pointer;
+}
+
 html {
   height: 100%
 }
@@ -57,4 +70,833 @@ button {
   margin-left: 5px;
   transform: translateY(-2px);
   user-select: none;
+}
+
+.styleKits {
+  max-height: 500px;
+  width: 800px;
+  overflow: auto;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.styleKits::-webkit-scrollbar {
+  width: .75em;
+}
+
+.styleKits::-webkit-scrollbar-track {
+  background-color: var(--color-dark);
+}
+
+.styleKits::-webkit-scrollbar-thumb {
+  background-color: var(--color-medium-dark);
+}
+
+.kitCard {
+  user-select: none;
+  margin: auto;
+  margin: 20px;
+  margin-top: 5px;
+  width: 350px;
+  border: solid 1px var(--color-medium-dark);
+  border-radius: 24px;
+  background-color: rgba(255, 255, 255, .05);
+}
+
+.kitCard:hover {
+  background-color: var(--color-medium-dark);
+}
+
+.kitName {
+  margin: auto;
+  text-align: center;
+  font-size: 18px;
+  color: var(--color-medium-light)
+}
+
+.kitNameDetails {
+  margin: auto;
+  text-align: center;
+  font-size: 24px;
+  color: var(--color-medium-light)
+}
+
+.topRow {
+  display: flex;
+}
+
+.colorGrid {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.colorGridSquare {
+  width: 40px;
+  height: 40px;
+}
+
+.kitCardFonts {
+  margin-top: 12px;
+}
+
+.kitCardMainFont {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 28px;
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kitCardSecondaryFont {
+  font-size: 18px;
+  width: 200px;
+  height: 25px;
+  line-height: 25px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.bottomRow {
+  display: flex;
+  justify-content: center;
+}
+
+.kitCardButton {
+  border: none;
+  font-size: 14px;
+  height: 30px;
+  min-width: 130px;
+  line-height: 0px;
+  background: none;
+  border-radius: 18px;
+  color: var(--color-medium-light);
+  transition: 0.25s;
+  margin: auto;
+  margin-top: 12px;
+}
+
+.kitCardButton:hover {
+  color: var(--color-light);
+}
+
+.kitDetailsMaster {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.styleKitDetails {
+  padding: 25px;
+  padding-top: 0px;
+  margin: auto;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  border: solid 1px var(--color-medium-dark);
+  border-radius: 24px;
+  background-color: rgba(255, 255, 255, .05);
+}
+
+.hexAndSquare {
+  margin: 5px;
+}
+
+.fontChoiceDetails {
+  margin-bottom: 10px;
+}
+
+.dropbtn {
+  text-align: left;
+  color: var(--color-medium-light);
+  user-select: none;
+  transition: 0.25s;
+}
+
+/* The container <div> - needed to position the dropdown content */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+
+.dropdown-content {
+  user-select: none;
+  position: absolute;
+  overflow: hidden;
+  background-color: var(--color-dark);
+  min-width: 120px;
+  box-shadow: 8px 8px 16px 0px rgba(0, 0, 0, .1);
+  z-index: 1;
+  transition: 0.25s;
+  height: 0px;
+}
+
+/* Links inside the dropdown */
+
+.dropdown-content div {
+  color: var(--color-medium-light);
+  padding: 6px 6px;
+  text-decoration: none;
+  font-size: 14px;
+  display: block;
+  text-align: left;
+}
+
+/* Change color of dropdown links on hover */
+
+.dropdown-content div:hover {
+  background-color: var(--color-medium-dark);
+  color: var(--color-light)
+}
+
+/* Show the dropdown menu on hover */
+
+.dropdown:hover .dropdown-content {
+  border: solid 1px var(--color-medium-dark);
+  height: 84px;
+  display: block;
+}
+
+.returnButton {
+  font-size: 12px;
+  padding: 10px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  min-width: 100px;
+  height: 30px;
+  line-height: 0px;
+  background: none;
+  border: solid 1px var(--color-medium-light);
+  border-radius: 18px;
+  color: var(--color-medium-light);
+  transition: 0.25s;
+  margin: auto;
+  margin-top: 15px;
+  height: 30px
+}
+
+.returnButton:hover {
+  border: solid 1px var(--color-light);
+  color: var(--color-light);
+  min-width: 130px
+}
+
+.fontMaster {
+  display: flex;
+  flex-direction: column;
+  height: 268px;
+}
+
+.editFontMaster {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fontBox {
+  min-height: 230px;
+  width: 485px;
+  padding: 15px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  border: solid 1px var(--color-medium-dark);
+  border-radius: 24px;
+  background-color: rgba(255, 255, 255, .05);
+}
+
+.buttonBox {
+  margin: auto;
+  width: 220px;
+  margin-bottom: 4px;
+  background-color: var(--color-dark);
+  padding-bottom: 10px;
+  padding-top: 4px;
+  border-radius: 10px;
+  border: solid 1px var(--color-medium-dark)
+}
+
+.fontDisplay {
+  font-family: var(--secondary-font);
+  width: 480px;
+  height: 225px;
+  border-radius: 2px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin-left: 5px;
+}
+
+.mainFontDisplay {
+  margin-top: 14px;
+  font-size: 33px;
+  width: 220px;
+  height: 40px;
+  line-height: 40px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: 0.25s;
+  user-select: none;
+}
+
+.mainFontDisplayText:hover {
+  color: var(--color-light) !important;
+  cursor: pointer;
+}
+
+.secondaryFontDisplay {
+  font-size: 18px;
+  width: 220px;
+  height: 25px;
+  line-height: 25px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: 0.25s;
+  user-select: none;
+}
+
+.secondaryFontDisplayText:hover {
+  color: var(--color-light) !important;
+  cursor: pointer;
+}
+
+.fontPreviewAndOptions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 5px;
+}
+
+.fontPreview {
+  height: 65px;
+  margin-top: 10px;
+}
+
+.fontvl {
+  border-left: 1px solid var(--color-medium-dark);
+  height: 225px;
+  margin-top: 3px;
+  margin: auto;
+}
+
+.btn {
+  font-size: 12px;
+  background: none;
+  border: none;
+  color: var(--color-medium-dark);
+  transition: 0.25s;
+}
+
+.active, .btn:hover {
+  color: var(--color-light)
+}
+
+.darkText {
+  color: var(--color-medium-light)
+}
+
+.buttonLine {
+  width: 163px;
+  margin: auto;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  height: .1px;
+  border-color: var(--color-medium-dark)
+}
+
+.fontContainer {
+  height: 220px;
+  width: 220px;
+  overflow: auto;
+  margin-bottom: 10px;
+  margin-top: 1px;
+  margin-right: 8px;
+  text-align: left;
+  border: solid 1px var(--color-medium-dark);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: var(--color-dark);
+  transform: translateY(-2px);
+  word-break: break-all
+}
+
+.fontContainer::-webkit-scrollbar {
+  width: .75em;
+}
+
+.fontContainer::-webkit-scrollbar-track {
+  border-left: solid 1px var(--color-medium-dark);
+  background-color: var(--color-dark);
+  -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+.fontContainer::-webkit-scrollbar-thumb {
+  background-color: var(--color-medium-dark);
+}
+
+.listedFont {
+  user-select: none;
+  font-size: 22px;
+  padding: 10px;
+}
+
+.listedFont:hover {
+  background-color: rgba(255, 255, 255, .2)
+}
+
+.selected {
+  background-color: rgba(255, 255, 255, .2)
+}
+
+.fontSearch {
+  border: 0;
+  background: none;
+  display: block;
+  margin: auto;
+  text-align: center;
+  border: 1px solid var(--color-medium-light);
+  padding: 2px;
+  margin-top: 0px;
+  width: 140px;
+  outline: none;
+  color: var(--color-light);
+  border-radius: 24px;
+  transition: 0.25s;
+  font-size: 12px;
+  transform: translateY(3px)
+}
+
+.fontSearch::placeholder {
+  color: var(--color-medium-dark)
+}
+
+.fontSearch:focus {
+  border-color: var(--color-light);
+  width: 170px;
+}
+
+.saveFontButton {
+  font-size: 12px;
+  padding: 10px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  width: 180px;
+  height: 30px;
+  line-height: 0px;
+  background: none;
+  border: solid 1px var(--color-medium-light);
+  border-radius: 18px;
+  color: var(--color-medium-light);
+  transition: 0.25s;
+  margin: auto;
+  margin-top: 80px;
+  transform: translateY(-59px);
+  height: 30px
+}
+
+.saveFontButton:hover {
+  border: solid 1px var(--color-light);
+  color: var(--color-light);
+  width: 210px
+}
+
+.colorBox {
+  height: 230px;
+  width: 485px;
+  padding: 15px;
+  margin: auto;
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: center;
+  border: solid 1px var(--color-medium-dark);
+  border-radius: 24px;
+  background-color: rgba(255, 255, 255, .05);
+}
+
+.colorDisplay {
+  font-family: var(--secondary-font);
+  width: 230px;
+  height: 225px;
+  border-radius: 2px;
+  padding: 5px;
+  font-weight: lighter;
+}
+
+.colorSquare {
+  height: 170px;
+  width: 50px;
+  border: solid .5px var(--color-medium-light);
+  border-radius: 5px;
+  margin-bottom: 5px
+}
+
+.colorRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.chrome-picker {
+  margin-top: 10px;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.colorvl {
+  border-left: 1px solid var(--color-medium-dark);
+  height: 212px;
+  margin-top: 3px;
+  margin: auto;
+  transform: translate(-4.25px, -3.5px);
+}
+
+.chrome-picker span {
+  font-family: var(--secondary-font) !important;
+  color: var(--color-medium-light) !important;
+}
+
+.chrome-picker input {
+  background: none !important;
+  box-shadow: none !important;
+  width: 80% !important;
+  border: solid 1px var(--color-medium-dark) !important;
+  color: var(--color-medium-light) !important;
+  transition: 0.25s;
+}
+
+.chrome-picker input:focus {
+  color: var(--color-light) !important;
+  width: 90% !important;
+  border: solid 1px var(--color-medium-light) !important;
+}
+
+.chrome-picker svg {
+  fill: var(--color-medium-light) !important;
+}
+
+.chrome-picker svg:hover {
+  fill: var(--color-dark) !important;
+  background: var(--color-medium-dark) !important;
+}
+
+.btn {
+  font-size: 12px;
+  padding-right: 4px;
+  padding-left: 4px;
+  background: none;
+  border: none;
+  color: var(--color-medium-dark);
+  transition: 0.25s;
+}
+
+.active, .btn:hover {
+  color: var(--color-light)
+}
+
+.darkText {
+  color: var(--color-medium-light)
+}
+
+.saveColorButton {
+  font-size: 12px;
+  padding: 10px;
+  width: 180px;
+  height: 30px;
+  line-height: 0px;
+  background: none;
+  border: solid 1px var(--color-medium-light);
+  border-radius: 18px;
+  color: var(--color-medium-light);
+  transition: 0.25s;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.saveColorButton:hover {
+  border: solid 1px var(--color-light);
+  color: var(--color-light);
+  width: 210px
+}
+
+.editSaveAndCancel {
+  margin: auto;
+  margin-top: 5px;
+}
+
+.editSaveAndCancel button {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.formBox {
+  width: 300px;
+  padding: 40px;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 60px
+}
+
+.formBox h1 {
+  color: var(--color-light);
+  font-weight: 500;
+}
+
+.formBox input[type="username"], .formBox input[type="password"] {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid var(--color-medium-light);
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: var(--color-light);
+  border-radius: 24px;
+  transition: 0.25s;
+}
+
+.formBox input[type="username"]:focus, .formBox input[type="password"]:focus {
+  width: 250px;
+  border-color: var(--color-light)
+}
+
+.formBox button {
+  border: 0;
+  background: none;
+  margin: auto;
+  text-align: center;
+  text-decoration: underline;
+  padding: 14px 12px;
+  outline: none;
+  color: var(--color-light);
+  transition: 0.25s;
+}
+
+.formBox button:hover {
+  color: var(--color-medium-dark);
+}
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
+  -webkit-animation: autofill 0s forwards;
+  animation: autofill 0s forwards;
+}
+
+@keyframes autofill {
+  100% {
+    background: transparent;
+    color: inherit;
+  }
+}
+
+@-webkit-keyframes autofill {
+  100% {
+    background: transparent;
+    color: inherit;
+  }
+}
+
+.topBar {
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.logoutSection {
+  text-align: right;
+  transform: translate(-60px, 4vh);
+}
+
+.logoutButton {
+  font-size: 12px;
+  background: none;
+  border: none;
+  border-radius: 18px;
+  color: var(--color-medium-light);
+  margin: auto;
+  transition: 0.25s;
+}
+
+.logoutButton:hover {
+  color: var(--color-light);
+}
+
+.previewModeButton {
+  position: fixed;
+  top: 4vh;
+  left: 60px
+}
+
+.previewKitText {
+  margin-bottom: 3px;
+}
+
+.controlsText {
+  text-align: left;
+  position: absolute;
+  color: var(--color-medium-light);
+}
+
+.currentKitBox {
+  height: 230px;
+  width: 485px;
+  padding: 15px;
+  margin: auto;
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: center;
+  border: solid 1px var(--color-medium-dark);
+  border-radius: 24px;
+  background-color: rgba(255, 255, 255, .05);
+}
+
+.colorChoiceDisplay {
+  font-family: var(--secondary-font);
+  width: 160px;
+  height: 225px;
+  border-radius: 2px;
+  padding: 0px;
+  font-weight: lighter;
+  transform: translate(0px, -4px);
+}
+
+.colorChoiceSquare {
+  height: 34px;
+  width: 150px;
+  border: solid .5px var(--color-medium-light);
+  border-radius: 5px;
+  margin-bottom: 5px
+}
+
+.colorChoiceHex {
+  text-align: left;
+  font-size: 14px;
+  margin: 3px;
+}
+
+.fontChoiceDisplay {
+  width: 300px;
+  height: 225px;
+  transform: translateX(6px)
+}
+
+.mainFontChoiceDisplay {
+  margin-top: 45px;
+  font-size: 60px;
+  width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.secondaryFontChoiceDisplay {
+  font-size: 24px;
+  width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform: translateY(-4px);
+}
+
+.saveKitButton {
+  font-size: 12px;
+  padding: 10px;
+  width: 120px;
+  height: 30px;
+  line-height: 0px;
+  background: none;
+  border: solid 1px var(--color-medium-light);
+  border-radius: 18px;
+  color: var(--color-medium-light);
+  transition: 0.25s;
+  margin: auto;
+  margin-top: 30px;
+  text-align: center;
+  margin-right: 0px;
+}
+
+.saveKitButton:hover {
+  border: solid 1px var(--color-light);
+  color: var(--color-light);
+  width: 150px
+}
+
+.MOS {
+  font-size: 18px;
+  padding-left: 5px;
+  padding-right: 5px;
+  transform: translateY(2px);
+  margin-top: 5px;
+}
+
+.fontVariationButtonGroup {
+  width: 200px;
+  margin: auto;
+  margin-bottom: 4px;
+}
+
+.fontVariationButton {
+  font-size: 14px;
+  padding-right: 4px;
+  padding-left: 4px;
+  background: none;
+  border: none;
+  color: var(--color-medium-dark);
+  transition: 0.25s;
+}
+
+.active, .fontVariationButton:hover {
+  color: var(--color-light)
+}
+
+.fontTooltip {
+  display: inline-block;
+  font-size: 12px;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  text-align: center;
+  background-color: var(--color-medium-dark);
+  color: var(--color-light);
+  border-radius: 100%;
+  margin-left: 5px;
+  transform: translate(-15px, -5px);
+  user-select: none;
+  position: absolute;
+}
+
+.__react_component_tooltip.show {
+  opacity: 1 !important;
+  background-color: var(--color-medium-dark);
+  color: var(--color-light);
+  box-shadow: 8px 8px 16px 0px rgba(0, 0, 0, .5);
 }

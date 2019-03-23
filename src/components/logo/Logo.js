@@ -1,20 +1,11 @@
 import React, { Component } from 'react'
-import "./Logo.css"
-import Nav from '../Nav/Nav';
-import TopBar from '../TopBar/TopBar';
-
 
 class Logo extends Component {
     render() {
         return (
-            <div>
-                {(this.props.isAuthenticated()) ? (<TopBar changePreviewMode={this.props.changePreviewMode} previewMode={this.props.previewMode} previewOption={this.props.previewOption} setAuth={this.props.setAuth} />) : (<div style={{height: "30px"}}></div>)}
-                <div className="logo">
-                    <span>styl</span><span style={{ color: "var(--color-medium-dark)" }}>easy</span>
-                </div>
-                {/* {(this.props.isAuthenticated()) ? (<Nav pathname={this.props.pathname} />) : ("")} */}
+            <div onClick={() => this.props.history.push("/")} className="logo">
+                <span>styl</span><span style={{ color: "var(--color-medium-dark)" }}>easy</span>
             </div>
-
         )
     }
 }

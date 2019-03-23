@@ -1,17 +1,13 @@
 import React, { Component } from "react"
-import IsAuth from "./components/Auth/IsAuth"
-import Logo from "./components/logo/Logo"
 import Footer from "./components/footer/Footer"
+import ApplicationViews from "./components/ApplicationViews";
 
 
 class Styleasy extends Component {
 
     // a function that return true if the session Storage object contains the key credentials and false if it does not.
-    isAuthenticated = () => sessionStorage.getItem("credentials") !== null
 
     state = {
-        authTrigger: this.isAuthenticated(),
-        pathname: "/",
         color1: "949df5",
         color2: "606ff0",
         color3: "1122ba",
@@ -37,10 +33,6 @@ class Styleasy extends Component {
         this.setState({previewOption: boolean})
     }
 
-    setPathname = (pathname) => {
-        this.setState({pathname: pathname})
-    }
-
     changePreviewMode = (boolean) => {
         this.setState({previewMode: boolean})
     }
@@ -49,23 +41,16 @@ class Styleasy extends Component {
     setAuth = () => {
         this.setState({ authTrigger: this.isAuthenticated() })
     }
+
     render() {
         return <div className="masterContainer">
-            <Logo
-            previewMode={this.state.previewMode}
+            <ApplicationViews
             changePreviewMode={this.changePreviewMode}
-            setAuth={this.setAuth}
-            pathname={this.state.pathname}
-            isAuthenticated={this.isAuthenticated}
-            color1={this.state.color1}
-            color2={this.state.color2}
-            color3={this.state.color3}
-            color4={this.state.color4}
-            main_font={this.state.main_font}
-            secondary_font={this.state.secondary_font}
             previewOption={this.state.previewOption}
+            editPreviewOption={this.editPreviewOption}
+            setStateToSessionStorage={this.setStateToSessionStorage}
+            setAuth={this.setAuth}
             />
-            <IsAuth changePreviewMode={this.changePreviewMode} previewOption={this.state.previewOption} editPreviewOption={this.editPreviewOption} setStateToSessionStorage={this.setStateToSessionStorage} pathname={this.state.pathname} isAuthenticated={this.isAuthenticated} setAuth={this.setAuth} setPathname={this.setPathname}/>
             <Footer/>
         </div>
     }

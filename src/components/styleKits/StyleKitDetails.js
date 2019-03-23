@@ -11,19 +11,53 @@ class StyleKitDetails extends Component {
         color3: "",
         color4: "",
         main_font: "",
-        secondary_font: ""
+        secondary_font: "",
+        preview: false
+    }
+
+    togglePreview = () => {
+        if (this.state.preview === false) {
+            this.setState({ preview: true })
+        } else {
+            this.setState({ preview: false })
+        }
     }
 
     editName = () => {
         const newName = window.prompt("Enter new name")
         if (newName !== null && newName !== "") {
-            this.setState({name: newName})
+            this.setState({ name: newName })
             this.props.editKitName(this.state.id, newName)
         }
     }
 
+    preview = () => {
+        document.documentElement.style.setProperty('--color-light', "#" + this.state.color1)
+        document.documentElement.style.setProperty('--color-medium-light', "#" + this.state.color2)
+        document.documentElement.style.setProperty('--color-medium-dark', "#" + this.state.color3)
+        document.documentElement.style.setProperty('--color-dark', "#" + this.state.color4)
+        document.documentElement.style.setProperty('--main-font', this.state.main_font)
+        document.documentElement.style.setProperty('--secondary-font', this.state.secondary_font)
+    }
+
+    resetPreview = () => {
+        document.documentElement.style.setProperty('--color-light', "#ffffff")
+        document.documentElement.style.setProperty('--color-medium-light', "#ababab")
+        document.documentElement.style.setProperty('--color-medium-dark', "#7d7d7d")
+        document.documentElement.style.setProperty('--color-dark', "#151515")
+        document.documentElement.style.setProperty('--main-font', "Helvetica, sans-serif")
+        document.documentElement.style.setProperty('--secondary-font', "Arial")
+    }
+
+    componentDidUpdate = () => {
+        if (this.state.preview) {
+            this.preview()
+        } else {
+            this.resetPreview()
+        }
+    }
+
     componentDidMount() {
-        if (this.props.pathname !== "/stylekits") { this.props.setPathname("/stylekits") }
         kitManager.get(this.props.match.params.styleKitId)
             .then(kit => {
                 this.setState({
@@ -43,8 +77,20 @@ class StyleKitDetails extends Component {
     render() {
         return (
             <div className="kitDetailsMaster">
-                <div className="kitName">{this.state.name}</div>
+                <div className="kitNameDetails">{this.state.name}</div>
                 <div className="styleKitDetails">
+                    <div className="dropdown">
+                        <div className="dropbtn">Edit ⯆</div>
+                        <div className="dropdown-content">
+                            <div onClick={() => this.editName()}>Edit Name</div>
+                            <div onClick={() => this.props.history.push(`/${this.state.id}/editcolors`)}>Edit Colors</div>
+                            <div onClick={() => this.props.history.push(`/${this.state.id}/editfonts`)}>Edit Fonts</div>
+                        </div>
+                    </div>
+                    <div className="fontChoiceDetails">
+                        <div className="mainFontChoiceDisplay" style={{ fontFamily: this.state.main_font, marginTop: "0px", width: "100%" }}>{this.state.main_font}</div>
+                        <div className="secondaryFontChoiceDisplay" style={{ width: "100%", fontFamily: this.state.secondary_font }}>{this.state.secondary_font}</div>
+                    </div>
                     <div className="colorChoiceDetails">
                         <div className="colorRow">
                             <div className="hexAndSquare">
@@ -65,17 +111,18 @@ class StyleKitDetails extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="fontChoiceDetails">
-                        <div className="mainFontChoiceDisplay" style={{ fontFamily: this.state.main_font, marginTop: "0px", width: "100%" }}>{this.state.main_font}</div>
-                        <div className="secondaryFontChoiceDisplay" style={{ width: "100%", fontFamily: this.state.secondary_font }}>{this.state.secondary_font}</div>
+                    <div className="colorRow" style={{ width: "300px", margin: "auto" }}>
+                        <button type="button" data-toggle="button" className="kitCardButton">Get Embed Code</button>
+                        {
+                            (this.state.preview === true) ? (
+                            <button type="button" data-toggle="button" onClick={() => this.togglePreview()} className="kitCardButton">Disable Preview</button>
+                            ) : (
+                                <button type="button" data-toggle="button" onClick={() => this.togglePreview()} className="kitCardButton">Preview</button>
+                            )
+                        }
                     </div>
                 </div>
-                <div className="colorRow" style={{ width: "400px", margin: "auto" }}>
-                    <button type="button" data-toggle="button" onClick={() => this.editName()} className="returnButton">Edit Name</button>
-                    <button type="button" data-toggle="button" onClick={() => this.props.history.push(`/${this.state.id}/editcolors`)} className="returnButton">Edit Colors</button>
-                    <button type="button" data-toggle="button" onClick={() => this.props.history.push(`/${this.state.id}/editfonts`)} className="returnButton">Edit Fonts</button>
-                </div>
-                <button type="button" data-toggle="button" onClick={() => this.props.history.push("/")} className="returnButton" style={{border: "none"}}>Return to Kits</button>
+                <button type="button" data-toggle="button" onClick={() => this.props.history.push("/")} className="returnButton">Return</button>
             </div>
         )
     }
