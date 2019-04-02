@@ -10,6 +10,7 @@ import kitManager from "../modules/kitManager"
 import { withRouter } from 'react-router'
 import StyleKits from "./styleKits/StyleKits";
 import StyleKitDetails from "./styleKits/StyleKitDetails"
+import StyleKitCSSCode from "./styleKits/StyleKitCSSCode"
 
 class ApplicationViews extends Component {
 
@@ -161,7 +162,16 @@ class ApplicationViews extends Component {
         <Route exact path="/:styleKitId(\d+)/details" render={(props) => {
           if (this.isAuthenticated()) {
             return <StyleKitDetails {...props}
+              styleKits={this.state.styleKits}
               editKitName={this.editKitName} />
+          } else {
+            return <Redirect to="/login" />
+          }
+        }} />
+
+        <Route exact path="/:styleKitId(\d+)/css" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <StyleKitCSSCode {...props}/>
           } else {
             return <Redirect to="/login" />
           }

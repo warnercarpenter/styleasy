@@ -112,7 +112,7 @@ class StyleKitDetails extends Component {
                         </div>
                     </div>
                     <div className="colorRow" style={{ width: "300px", margin: "auto" }}>
-                        <button type="button" data-toggle="button" className="kitCardButton">Get Embed Code</button>
+                        <button type="button" data-toggle="button" className="kitCardButton" onClick={() => this.props.history.push("/" + this.state.id + "/css")}>Get CSS Code</button>
                         {
                             (this.state.preview === true) ? (
                             <button type="button" data-toggle="button" onClick={() => this.togglePreview()} className="kitCardButton">Disable Preview</button>
