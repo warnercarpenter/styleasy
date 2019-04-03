@@ -15,6 +15,10 @@ class StyleKitCSSCode extends Component {
         preview: false
     }
 
+    getCSSCode = () => {
+        
+    }
+
     componentDidMount() {
         kitManager.get(this.props.match.params.styleKitId)
             .then(kit => {

@@ -14,12 +14,7 @@ class StyleKits extends Component {
     render() {
         return (
             <div>
-                <div className="kitName" style={{marginBottom: "15px"}}>Select a kit to view or edit</div>
-                {
-                    (this.props.styleKits.length < 1 && this.state.loaded === true) ? (
-                        <p className="uhOh">Uh oh! It looks like you haven't created any kits.<br />Create a new kit to get started!</p>
-                    ) : (null)
-                }
+                <div className="kitName" style={{marginBottom: "15px"}}>Welcome to Styleasy! Select a preset to get started.</div>
                 {
                     <section className="styleKits">
                         <div className="kitCardContainer">
@@ -33,9 +28,6 @@ class StyleKits extends Component {
                                         })
                                 ) : (null)
                             }
-                        </div>
-                        <div className="addNewKit">
-                            <button className="addNewKitButton">Create new kit</button>
                         </div>
                     </section>
                 }

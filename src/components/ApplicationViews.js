@@ -19,7 +19,10 @@ class ApplicationViews extends Component {
     styleKits: []
   }
 
-  isAuthenticated = () => sessionStorage.getItem("credentials") !== null
+  isAuthenticated = () => {
+    // sessionStorage.getItem("credentials") !== null
+    return true
+  }
 
   deleteKit = (kitId) => {
     kitManager.delete(kitId)
@@ -141,10 +144,11 @@ class ApplicationViews extends Component {
   render() {
     return (
       <React.Fragment>
-        <div>
+        <Logo history={this.props.history} />
+
+        {/* <div>
           {(this.isAuthenticated()) ? (<Logout history={this.props.history} setAuth={this.props.setAuth} />) : (<div style={{ height: "30px" }}></div>)}
-          <Logo history={this.props.history}/>
-        </div>
+        </div> */}
 
         <Route exact path="/login" render={(props) => {
           return <Login {...props} />
@@ -171,7 +175,7 @@ class ApplicationViews extends Component {
 
         <Route exact path="/:styleKitId(\d+)/css" render={(props) => {
           if (this.isAuthenticated()) {
-            return <StyleKitCSSCode {...props}/>
+            return <StyleKitCSSCode {...props} />
           } else {
             return <Redirect to="/login" />
           }
