@@ -57,6 +57,10 @@ class StyleKitDetails extends Component {
         }
     }
 
+    componentWillUnmount() {
+        this.resetPreview()
+    }
+
     componentDidMount() {
         kitManager.get(this.props.match.params.styleKitId)
             .then(kit => {
@@ -79,50 +83,48 @@ class StyleKitDetails extends Component {
             <div className="kitDetailsMaster">
                 <div className="kitNameDetails">{this.state.name}</div>
                 <div className="styleKitDetails">
-                    <div className="dropdown">
-                        <div className="dropbtn">Edit ⯆</div>
-                        <div className="dropdown-content">
-                            <div onClick={() => this.editName()}>Edit Name</div>
-                            <div onClick={() => this.props.history.push(`/${this.state.id}/editcolors`)}>Edit Colors</div>
-                            <div onClick={() => this.props.history.push(`/${this.state.id}/editfonts`)}>Edit Fonts</div>
-                        </div>
-                    </div>
                     <div className="fontChoiceDetails">
                         <div className="mainFontChoiceDisplay" style={{ fontFamily: this.state.main_font, marginTop: "0px", width: "100%" }}>{this.state.main_font}</div>
                         <div className="secondaryFontChoiceDisplay" style={{ width: "100%", fontFamily: this.state.secondary_font }}>{this.state.secondary_font}</div>
                     </div>
-                    <div className="colorChoiceDetails">
-                        <div className="colorRow">
-                            <div className="hexAndSquare">
-                                <div className="colorChoiceSquare" style={{ width: "120px", backgroundColor: "#" + this.state.color1 }}>{""}</div>
-                                <div className="colorChoiceHex"><span style={{ color: "var(--color-medium-light)" }}>Color 1: </span><span style={{ color: "var(--color-light)" }}>#{this.state.color1.toUpperCase()}</span></div>
-                            </div>
-                            <div className="hexAndSquare">
-                                <div className="colorChoiceSquare" style={{ width: "120px", backgroundColor: "#" + this.state.color2 }}>{""}</div>
-                                <div className="colorChoiceHex"><span style={{ color: "var(--color-medium-light)" }}>Color 2: </span><span style={{ color: "var(--color-light)" }}>#{this.state.color2.toUpperCase()}</span></div>
-                            </div>
-                            <div className="hexAndSquare">
-                                <div className="colorChoiceSquare" style={{ width: "120px", backgroundColor: "#" + this.state.color3 }}>{""}</div>
-                                <div className="colorChoiceHex"><span style={{ color: "var(--color-medium-light)" }}>Color 3: </span><span style={{ color: "var(--color-light)" }}>#{this.state.color3.toUpperCase()}</span></div>
-                            </div>
-                            <div className="hexAndSquare">
-                                <div className="colorChoiceSquare" style={{ width: "120px", backgroundColor: "#" + this.state.color4 }}>{""}</div>
-                                <div className="colorChoiceHex"><span style={{ color: "var(--color-medium-light)" }}>Color 4: </span><span style={{ color: "var(--color-light)" }}>#{this.state.color4.toUpperCase()}</span></div>
-                            </div>
+                    <div className="colorRow">
+                        <div className="hexAndSquare">
+                            <div className="colorChoiceSquare" style={{ backgroundColor: "#" + this.state.color1 }}>{""}</div>
+                            <div className="colorChoiceHex"><span style={{ color: "var(--color-medium-light)" }}>Color 1: </span><span style={{ color: "var(--color-light)" }}>#{this.state.color1.toUpperCase()}</span></div>
+                        </div>
+                        <div className="hexAndSquare">
+                            <div className="colorChoiceSquare" style={{ backgroundColor: "#" + this.state.color2 }}>{""}</div>
+                            <div className="colorChoiceHex"><span style={{ color: "var(--color-medium-light)" }}>Color 2: </span><span style={{ color: "var(--color-light)" }}>#{this.state.color2.toUpperCase()}</span></div>
+                        </div>
+                        <div className="hexAndSquare">
+                            <div className="colorChoiceSquare" style={{ backgroundColor: "#" + this.state.color3 }}>{""}</div>
+                            <div className="colorChoiceHex"><span style={{ color: "var(--color-medium-light)" }}>Color 3: </span><span style={{ color: "var(--color-light)" }}>#{this.state.color3.toUpperCase()}</span></div>
+                        </div>
+                        <div className="hexAndSquare">
+                            <div className="colorChoiceSquare" style={{ backgroundColor: "#" + this.state.color4 }}>{""}</div>
+                            <div className="colorChoiceHex"><span style={{ color: "var(--color-medium-light)" }}>Color 4: </span><span style={{ color: "var(--color-light)" }}>#{this.state.color4.toUpperCase()}</span></div>
                         </div>
                     </div>
-                    <div className="colorRow" style={{ width: "300px", margin: "auto" }}>
+                    <div className="buttonRow" style={{ margin: "auto" }}>
+                        <div className="dropdown">
+                            <button className="dropbtn kitCardButton">Edit</button>
+                            <div className="dropdown-content">
+                                <div onClick={() => this.editName()}>Edit Name</div>
+                                <div onClick={() => this.props.history.push(`/${this.state.id}/editcolors`)}>Edit Colors</div>
+                                <div onClick={() => this.props.history.push(`/${this.state.id}/editfonts`)}>Edit Fonts</div>
+                            </div>
+                        </div>
                         <button type="button" data-toggle="button" className="kitCardButton" onClick={() => this.props.history.push("/" + this.state.id + "/css")}>Get CSS Code</button>
                         {
                             (this.state.preview === true) ? (
-                            <button type="button" data-toggle="button" onClick={() => this.togglePreview()} className="kitCardButton">Disable Preview</button>
+                                <button type="button" data-toggle="button" onClick={() => this.togglePreview()} className="kitCardButton">Disable Preview</button>
                             ) : (
-                                <button type="button" data-toggle="button" onClick={() => this.togglePreview()} className="kitCardButton">Preview</button>
-                            )
+                                    <button type="button" data-toggle="button" onClick={() => this.togglePreview()} className="kitCardButton">Preview</button>
+                                )
                         }
                     </div>
                 </div>
-                <button type="button" data-toggle="button" onClick={() => this.props.history.push("/")} className="returnButton">Return</button>
+                <button type="button" data-toggle="button" onClick={() => this.props.history.push("/")} className="returnButton">Cancel</button>
             </div>
         )
     }

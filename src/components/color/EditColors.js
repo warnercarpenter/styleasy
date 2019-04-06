@@ -191,8 +191,8 @@ class EditColors extends Component {
                             />
                         </div>
                         <div className="editSaveAndCancel">
-                            <button className="returnButton" type="button" data-toggle="button" onClick={() => this.saveColors()}>Save</button>
-                            <button className="returnButton" type="button" data-toggle="button" onClick={() => this.props.history.push(`/${this.state.id}/details`)}>Cancel</button>
+                            <button className="kitCardButton" type="button" data-toggle="button" onClick={() => this.saveColors()}>Save</button>
+                            <button className="kitCardButton" type="button" data-toggle="button" onClick={() => this.props.history.push(`/${this.state.id}/details`)}>Cancel</button>
                         </div>
                     </section>
                 </div>
