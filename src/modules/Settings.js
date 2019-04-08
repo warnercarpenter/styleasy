@@ -1,3 +1,3 @@
 export default {
-    remoteURL: "https://styleasy-api.herokuapp.com/"
+    remoteURL: "https://styleasy-api.herokuapp.com"
 }
