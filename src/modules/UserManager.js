@@ -21,9 +21,9 @@ export default {
       body: JSON.stringify(obj)
     }).then(data => data.json())
   },
-  searchUP(username, password) {
+  searchUP(username) {
     return fetch(
-      `${Settings.remoteURL}/users?username=${username}&password=${password}`
+      `${Settings.remoteURL}/users?username=${username}`
     ).then(e => e.json())
   },
   searchUsername(username) {
