@@ -3,13 +3,13 @@ Styleasy is a front end web application designed to help developers reach a star
 Styleasy is currently in the early stages of development. Here are some of the features to be included in the beta version.
 
 
-Markup: * Choose from presets to act as a starting point when designing a kit
-*Generate starter CSS code from within the app
-*Expanded color selection options
-*Mobile browser compatibility
-*Shareable links for any style kit
-*Share your kits to the cloud, where they can be accessed and rated by other users
-*Two-factor authentication for increased security
+- Choose from presets to act as a starting point when designing a kit
+- Generate starter CSS code from within the app
+- Expanded color selection options
+- Mobile browser compatibility
+- Shareable links for any style kit
+- Share your kits to the cloud, where they can be accessed and rated by other users
+- Two-factor authentication for increased security
 
 View the demo at: http://styleasy.net
 
