@@ -7,7 +7,7 @@ class ColorVariationButtons extends Component {
             <React.Fragment>
             <ReactTooltip place="bottom" type="light" effect="solid"/>
             <div className="btn-group">
-                <div className="darkText">Range<div className="tooltip" data-tip="Changes the contrast of your palette">?</div></div>
+                <div className="darkText">Range<div className="tooltip" data-tip="Adjust the contrast of your palette">?</div></div>
                 {
                     (this.props.variation === "low") ? (
                         <span>
