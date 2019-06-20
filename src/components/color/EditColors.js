@@ -5,8 +5,6 @@ import tinycolor from 'tinycolor2'
 import materialpalette from 'material-palette'
 import kitManager from '../../modules/kitManager';
 import { Prompt } from 'react-router'
-import ReactTooltip from 'react-tooltip'
-import Switch from "react-switch";
 
 
 class EditColors extends Component {
@@ -170,53 +168,9 @@ class EditColors extends Component {
             })
     }
 
-    // render() {
-    //     return (
-    //         <React.Fragment>
-    //             <ReactTooltip multiline={true} place="bottom" type="light" effect="solid" />
-    //             <Prompt
-    //                 when={this.state.edited === true}
-    //                 message='You have unsaved changes, are you sure you want to leave?'
-    //             />
-    //             <div className="colorMaster">
-    //                 <div className="kitName" style={{ marginBottom: "10px" }}>Editing colors for: <span style={{ color: "var(--color-light)" }}>{this.state.name}</span></div>
-    //                 <section className="colorBox">
-    //                     <ColorDisplay setVariation={this.setVariation} reloadColors={this.reloadColorsVariation} colors={this.state.colors} variation={this.state.variation} />
-    //                     <div className="colorvl"></div>
-    //                     <div>
-    //                         <ChromePicker
-    //                             color={this.state.sourceHex}
-    //                             disableAlpha={true}
-    //                             onChangeComplete={this.setSourceHex}
-    //                         />
-    //                     </div>
-    //                     <div className="editSaveAndCancel">
-    //                         <button className="kitCardButton" type="button" data-toggle="button" onClick={() => this.saveColors()}>Save</button>
-    //                         <button className="kitCardButton" type="button" data-toggle="button" onClick={() => this.props.history.push(`/${this.state.id}/details`)}>Cancel</button>
-    //                     </div>
-    //                 </section>
-    //             </div>
-    //             <label className="previewModeButton">
-    //                 <div className="previewKitText">Preview colors <div className="tooltip"
-    //                     data-tip="Visualize current color selections">?</div></div>
-    //                 <span className="toggle">
-    //                     <Switch
-    //                         onChange={this.handleChange}
-    //                         checked={this.state.previewMode}
-    //                         offColor={"#7d7d7d"}
-    //                         onColor={"#" + this.state.colors[2]}
-    //                         boxShadow={"0px 0px 3px black"}
-    //                     />
-    //                 </span>
-    //             </label>
-    //         </React.Fragment>
-    //     )
-    // }
-
     render() {
         return (
             <React.Fragment>
-                <ReactTooltip multiline={true} place="bottom" type="light" effect="solid" />
                 <Prompt
                     when={this.state.edited === true}
                     message='You have unsaved changes, are you sure you want to leave?'

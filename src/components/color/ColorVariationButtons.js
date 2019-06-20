@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
-import ReactTooltip from 'react-tooltip'
 
 class ColorVariationButtons extends Component {
     render() {
         return (
             <React.Fragment>
-            <ReactTooltip place="bottom" type="light" effect="solid"/>
             <div className="btn-group">
-                <div className="darkText">Range<div className="tooltip" data-tip="Adjust the contrast of your palette">?</div></div>
+                <div className="darkText">Range</div>
                 {
                     (this.props.variation === "low") ? (
                         <span>

@@ -87,13 +87,13 @@ class EditFonts extends Component {
                     message='You have unsaved changes, are you sure you want to leave?'
                 />
                 <div className="editFontMaster">
-                {
-                    (this.state.mainOrSecondary === "main") ? (
-                        <div className="kitName" style={{ marginBottom: "10px" }}>Editing <span style={{ color: "var(--color-light)" }}>Main Font</span> for: <span style={{ color: "var(--color-light)" }}>{this.state.name}</span></div>
+                    {
+                        (this.state.mainOrSecondary === "main") ? (
+                            <div className="kitName" style={{ marginBottom: "10px" }}>Editing <span style={{ color: "var(--color-light)" }}>Main Font</span> for: <span style={{ color: "var(--color-light)" }}>{this.state.name}</span></div>
                         ) : (
-                            <div className="kitName" style={{ marginBottom: "10px" }}>Editing <span style={{ color: "var(--color-light)" }}>Secondary Font</span> for: <span style={{ color: "var(--color-light)" }}>{this.state.name}</span></div>
-                    )
-                }
+                                <div className="kitName" style={{ marginBottom: "10px" }}>Editing <span style={{ color: "var(--color-light)" }}>Secondary Font</span> for: <span style={{ color: "var(--color-light)" }}>{this.state.name}</span></div>
+                            )
+                    }
                     <div className="fontMaster">
                         <section className="fontBox">
                             <FontSelect
@@ -111,10 +111,10 @@ class EditFonts extends Component {
                             />
                         </section>
                     </div>
-                    <div className="editSaveAndCancel" style={{marginTop: "0px"}}>
-                        <button className="returnButton" type="button" data-toggle="button" onClick={() => this.saveFonts()}>Save</button>
-                        <button className="returnButton" type="button" data-toggle="button" onClick={() => this.props.history.push(`/${this.state.id}/details`)}>Cancel</button>
-                    </div>
+                </div>
+                <div className="editSaveAndCancel" style={{ marginTop: "0px" }}>
+                    <button className="solidButton" type="button" data-toggle="button" onClick={() => this.saveFonts()}>Save</button>
+                    <button className="solidButton" type="button" data-toggle="button" onClick={() => this.props.history.push(`/${this.state.id}/details`)}>Cancel</button>
                 </div>
             </React.Fragment>
         )
