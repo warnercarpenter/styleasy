@@ -840,7 +840,7 @@ button {
   padding-top: 4px !important;
   padding-bottom: 4px !important;
   line-height: 0px;
-  background: var(--color-medium-light);
+  background: var(--color-light);
   border: none;
   border-radius: 5px;
   color: var(--color-dark);
